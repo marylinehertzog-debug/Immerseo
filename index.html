@@ -1,226 +1,657 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immerseo - Plaquette de Présentation Commerciale</title>
+    <title>Immerseo — Vues Immersives IA & Animations Vidéo pour Professionnels</title>
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0B0F19;
+            background-color: #070A11;
             color: #F3F4F6;
+            overflow-x: hidden;
         }
 
-        /* Directives Impression / Export PDF */
-        @page {
-            size: A4 portrait;
-            margin: 0;
+        /* Glassmorphism & Custom Gradient Utilities */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            html, body {
-                width: 210mm;
-                height: 297mm;
-                background-color: #0B0F19 !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow: hidden !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .print-container {
-                box-shadow: none !important;
-                border: none !important;
-                border-radius: 0 !important;
-                width: 210mm !important;
-                height: 297mm !important;
-                max-width: 210mm !important;
-                margin: 0 !important;
-                padding: 10mm 12mm !important;
-                background-color: #0B0F19 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: space-between !important;
-            }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070A11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
         }
     </style>
 </head>
-<body class="min-h-screen py-6 px-4 flex flex-col items-center justify-center">
+<body class="antialiased selection:bg-cyan-500 selection:text-slate-950">
 
-    <!-- Action Bar / Controls -->
-    <div class="no-print mb-6 flex flex-col sm:flex-row gap-4 items-center text-center">
-        <button onclick="window.print()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-6 rounded-full shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2 cursor-pointer text-sm">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-            Télécharger / Imprimer la Plaquette (PDF 1 Page)
-        </button>
-        <p class="text-xs text-slate-400">💡 Conseil : Cochez <strong>"Graphiques d'arrière-plan"</strong> dans les options d'impression.</p>
-    </div>
-
-    <!-- Main Brochure Sheet Container -->
-    <div class="print-container w-full max-w-[850px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden p-6 sm:p-8 space-y-4">
-
-        <!-- HEADER / BRANDING -->
-        <div class="border-b border-slate-800 pb-4 flex flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <!-- Logo Officiel Immerseo -->
-                <div class="flex items-center gap-3">
-                    <img src="Logo Immerseo.png" alt="Immerseo" class="h-16 sm:h-20 w-auto object-contain rounded-lg hidden" onload="this.classList.remove('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.add('hidden');" onerror="this.classList.add('hidden');">
-                    <div class="flex items-center gap-3.5">
-                        <svg class="w-14 h-12 shrink-0" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- NAVIGATION BAR (Fixed Header) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand / Logo -->
+                <a href="#accueil" class="flex items-center gap-3 group">
+                    <img src="Logo Immerseo.png" alt="Immerseo Logo" class="h-12 w-auto object-contain rounded-md hidden" onload="this.classList.remove('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.add('hidden');" onerror="this.classList.add('hidden');">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-10 h-10 shrink-0 transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 10 H80 V42" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 10 V62 H44" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                             <polygon points="50,34 50,78 92,56" stroke="#00E5FF" stroke-width="6" fill="#0B0F19" stroke-linejoin="round"/>
                         </svg>
                         <div>
-                            <h1 class="text-3xl font-black tracking-[0.14em] text-white leading-none">IMMERSEO</h1>
-                            <p class="text-cyan-400 font-bold text-[10px] tracking-[0.24em] uppercase mt-1">VUES IMMERSIVES IA</p>
+                            <span class="text-2xl font-black tracking-[0.12em] text-white block leading-none">IMMERSEO</span>
+                            <span class="text-cyan-400 font-bold text-[9px] tracking-[0.22em] uppercase mt-0.5 block">VUES IMMERSIVES IA</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#accueil" class="hover:text-cyan-400 transition-colors">Accueil</a>
+                    <a href="#concept" class="hover:text-cyan-400 transition-colors">Concept</a>
+                    <a href="#secteurs" class="hover:text-cyan-400 transition-colors">Secteurs</a>
+                    <a href="#tarifs" class="hover:text-cyan-400 transition-colors">Tarifs</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="#contact" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-5 rounded-full text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all transform hover:scale-105">
+                        Test Gratuit
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#accueil" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Accueil</a>
+            <a href="#concept" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Concept</a>
+            <a href="#secteurs" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Secteurs</a>
+            <a href="#tarifs" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Tarifs</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Contact</a>
+            <a href="#contact" class="block text-center bg-cyan-500 text-slate-950 font-bold py-2.5 rounded-full text-xs uppercase tracking-wider mt-4">
+                Test Gratuit
+            </a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO / LANDING PAGE (#accueil) -->
+    <section id="accueil" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <!-- Glow accents -->
+        <div class="glow-effect top-10 left-1/2 -translate-x-1/2 opacity-60"></div>
+        <div class="glow-effect -bottom-10 right-10 opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copywriting -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold text-xs tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        Le pouvoir de la vidéo immersive intelligente
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Ne montrez plus seulement vos locaux. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">
+                            Faites-les vivre avant même la visite.
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Les photos fixes ne captent plus l'attention. Grâce à notre technologie d'animation IA, nous transformons vos visuels HD en <strong>expériences vidéo immersives d'exception</strong> calibrées pour vos Réseaux Sociaux, votre Site Web et Google Maps.
+                    </p>
+
+                    <!-- CTAs & Proof -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#contact" class="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 px-8 rounded-full text-sm shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 text-center">
+                            Demander un essai offert
+                        </a>
+                        <a href="#tarifs" class="w-full sm:w-auto glass-card hover:bg-slate-800/80 text-white font-semibold py-3.5 px-8 rounded-full text-sm transition-all border border-slate-700 text-center">
+                            Découvrir nos tarifs
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <p class="text-xl font-extrabold text-cyan-400">48h</p>
+                            <p class="text-xs text-slate-400">Livraison ultra-rapide</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-cyan-400">100%</p>
+                            <p class="text-xs text-slate-400">Sans tournage lourd</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-cyan-400">HD / 4K</p>
+                            <p class="text-xs text-slate-400">Optimisé RS & Maps</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-slate-950 px-3.5 py-1.5 rounded-xl border border-slate-800 text-right">
-                <span class="text-[10px] text-slate-400 block">Présentation Offre Pro</span>
-                <span class="text-xs font-bold text-cyan-400">contact@immerseo.fr</span>
+
+                <!-- Right Column: Interactive Showcase Card -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl p-4 sm:p-6 relative border border-slate-800 shadow-2xl">
+                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                            Rendu Immersion IA
+                        </div>
+                        
+                        <!-- Simulated Video Player Frame -->
+                        <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group">
+                            <!-- Background effect overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-slate-900 to-slate-950"></div>
+                            
+                            <!-- Animated Pulse Showcase -->
+                            <div class="relative z-10 text-center p-6 space-y-4">
+                                <div class="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-400 flex items-center justify-center mx-auto shadow-inner group-hover:scale-110 transition-transform cursor-pointer">
+                                    <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-base">Aperçu Vues Immersives</h3>
+                                    <p class="text-xs text-slate-400 mt-1">Transformez 1 simple photo HD en mouvement dynamique 3D</p>
+                                </div>
+                                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/90 border border-slate-800 text-[11px] text-cyan-400">
+                                    <span>✨ Passage Jour / Nuit & Effets d'Ambiance</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Format 9:16 & 16:9</span>
+                            <span class="text-cyan-400 font-semibold">Prêt à publier</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </section>
 
-        <!-- HERO SECTION / LE PROBLÈME vs LA SOLUTION -->
-        <div class="space-y-2">
-            <div class="inline-block px-2.5 py-0.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 font-semibold text-[10px] uppercase tracking-wider">
-                Le pouvoir de la vidéo intelligente
+    <!-- SECTION 2: CONCEPT & SECTEURS (#concept & #secteurs) -->
+    <section id="concept" class="py-20 bg-slate-950/60 border-y border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Pourquoi choisir Immerseo ?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Un bond technologique par rapport aux photos classiques
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Découvrez comment nos visuels immersifs captivent vos prospects et accélèrent leurs décisions de réservation ou de visite.
+                </p>
             </div>
-            <h2 class="text-xl sm:text-2xl font-extrabold text-white leading-tight">
-                Ne montrez plus seulement vos locaux. <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Faites-les vivre avant même la première visite.</span>
-            </h2>
-            <p class="text-xs text-slate-300 leading-relaxed">
-                Les photos statiques ne suffisent plus pour capter l'attention sur les réseaux sociaux et Google Maps. Grâce à notre technologie d'animation IA, nous transformons vos photos HD en <strong>expériences vidéo immersives et dynamiques</strong>.
-            </p>
-        </div>
 
-        <!-- COMPARATIF AVANT / APRÈS CONCEPT -->
-        <div class="grid grid-cols-2 gap-3">
-            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
-                <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-1">❌ La Photo Classique</div>
-                <ul class="space-y-1 text-[11px] text-slate-400">
-                    <li class="flex items-center gap-1.5"><span>•</span> Statique et impersonnelle</li>
-                    <li class="flex items-center gap-1.5"><span>•</span> Faible taux d'engagement</li>
-                    <li class="flex items-center gap-1.5"><span>•</span> Projection difficile pour le client</li>
-                </ul>
-            </div>
-            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-cyan-500/40 relative overflow-hidden">
-                <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider mb-1">✨ L'Immersion IA Immerseo</div>
-                <ul class="space-y-1 text-[11px] text-slate-200">
-                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Mouvements fluides, éclairages vivants</li>
-                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Passage Jour / Nuit & Figurants virtuels</li>
-                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance captivante</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- SECTION PAR SECTEUR D'ACTIVITÉ -->
-        <div class="space-y-2 pt-2 border-t border-slate-800">
-            <h3 class="text-sm font-bold text-white">
-                Des solutions adaptées à votre secteur d'activité
-            </h3>
-
-            <div class="grid grid-cols-2 gap-3">
+            <!-- Comparison Grid -->
+            <div class="grid md:grid-cols-2 gap-8 mb-20">
                 
-                <!-- CAS 1 : IMMOBILIER -->
-                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs">🏡</span>
-                        <h4 class="font-bold text-white text-xs">Agences & Promoteurs Immobiliers</h4>
+                <!-- Card 1: Old way -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-red-500/80">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-red-400 font-bold text-sm uppercase tracking-wider">❌ La Photo Classique</span>
+                        <span class="text-xs text-slate-500">Approche Traditionnelle</span>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-snug">
-                        Aidez vos acquéreurs à se projeter dans des biens vides ou à rénover. Valorisez vos mandats exclusifs avec des vidéos Reels/TikTok.
-                    </p>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-400 font-bold">✕</span>
+                            <span><strong>Statique et passive :</strong> Facilement ignorée sur les fils d'actualité.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-400 font-bold">✕</span>
+                            <span><strong>Projection limitée :</strong> Difficile de ressentir l'atmosphère réelle d'un lieu.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-red-400 font-bold">✕</span>
+                            <span><strong>Faible algorithme :</strong> Les réseaux sociaux privilégient le format vidéo.</span>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- CAS 2 : HÔTELLERIE -->
-                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs">🏨</span>
-                        <h4 class="font-bold text-white text-xs">Hôtels, Gîtes & Maisons d'Hôtes</h4>
+                <!-- Card 2: Immerseo way -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-cyan-400 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-2xl"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-cyan-400 font-bold text-sm uppercase tracking-wider">✨ L'Immersion IA Immerseo</span>
+                        <span class="text-xs text-cyan-400/80 font-semibold">Solution Nouvelle Génération</span>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-snug">
-                        Sublimez l'atmosphère de vos chambres, spas et terrasses. Montrez le passage du jour à une ambiance cosy nocturne.
-                    </p>
-                </div>
-
-                <!-- CAS 3 : RESTAURATION -->
-                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs">🍽️</span>
-                        <h4 class="font-bold text-white text-xs">Restaurants, Bars & Lounges</h4>
-                    </div>
-                    <p class="text-[11px] text-slate-300 leading-snug">
-                        Donnez envie de réserver une table en affichant une salle vivante et une ambiance chaleureuse directement sur Google Maps.
-                    </p>
-                </div>
-
-                <!-- CAS 4 : ÉCOLES DE MUSIQUE / STUDIOS -->
-                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs">🎵</span>
-                        <h4 class="font-bold text-white text-xs">Écoles de Musique & Studios</h4>
-                    </div>
-                    <p class="text-[11px] text-slate-300 leading-snug">
-                        Mettez en scène vos salles de cours et équipements. Donnez de l'énergie à vos locaux pour rassurer et attirer les futurs élèves.
-                    </p>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 font-bold">✓</span>
+                            <span><strong>Mouvement & Vie :</strong> Mouvements de caméra fluides, effets de lumière vivants.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 font-bold">✓</span>
+                            <span><strong>Immersion totale :</strong> Transitions Jour/Nuit, sonorisation et figurants virtuels.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-cyan-400 font-bold">✓</span>
+                            <span><strong>Portée démultipliée :</strong> Parfaitement calibré pour Reels, TikTok et Google Maps.</span>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
-        </div>
 
-        <!-- BÉNÉFICES CLÉS & WORKFLOW -->
-        <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
-            <div class="grid grid-cols-3 gap-3 text-center">
-                <div class="space-y-0.5">
-                    <div class="text-white font-bold text-xs">Zero Déplacement</div>
-                    <p class="text-[10px] text-slate-400">Aucun tournage lourd sur place. Travail direct sur photos HD.</p>
+            <!-- SECTEURS D'ACTIVITÉ (#secteurs) -->
+            <div id="secteurs" class="pt-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <h3 class="text-2xl font-bold text-white">Des solutions sur-mesure par secteur</h3>
+                    <p class="text-xs sm:text-sm text-slate-400">Quel que soit votre établissement, nous adaptons le rendu à votre image.</p>
                 </div>
-                <div class="space-y-0.5">
-                    <div class="text-white font-bold text-xs">Livraison sous 48h</div>
-                    <p class="text-[10px] text-slate-400">Vidéos HD optimisées prêtes à être diffusées rapidement.</p>
-                </div>
-                <div class="space-y-0.5">
-                    <div class="text-white font-bold text-xs">Multi-Supports</div>
-                    <p class="text-[10px] text-slate-400">Calibré pour Instagram, TikTok, Sites Web & Google Maps.</p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Immobilier -->
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            🏡
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Immobilier</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Agences & promoteurs : aidez vos acquéreurs à se projeter dans des biens meublés ou à rénover avec des visites animées.
+                        </p>
+                    </div>
+
+                    <!-- Hôtellerie -->
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            🏨
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Hôtels & Gîtes</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Sublimez vos chambres, spas et extérieurs. Montrez le passage d'une ambiance ensoleillée à un cadre nocturne chaleureux.
+                        </p>
+                    </div>
+
+                    <!-- Restauration -->
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            🍽️
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Restaurants & Bars</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Donnez envie de réserver en présentant une salle vivante et chaleureuse directement sur votre fiche Google Maps.
+                        </p>
+                    </div>
+
+                    <!-- Musique & Studios -->
+                    <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            🎵
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Écoles & Studios</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Mettez en scène vos équipements et studios de création pour rassurer et donner de l'énergie à vos futurs élèves.
+                        </p>
+                    </div>
+
                 </div>
             </div>
-        </div>
 
-        <!-- CALL TO ACTION / OFFERT -->
-        <div class="bg-gradient-to-r from-cyan-950 via-slate-900 to-slate-950 p-4 rounded-xl border border-cyan-500/50 text-center space-y-2">
-            <div class="inline-block px-2.5 py-0.5 bg-cyan-500 text-slate-950 font-extrabold text-[9px] rounded-full uppercase tracking-wider">
-                Offre Découverte Prospection
+        </div>
+    </section>
+
+    <!-- SECTION 3: TARIFS (#tarifs) -->
+    <section id="tarifs" class="py-24 relative">
+        <div class="glow-effect top-1/2 left-10 opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Offres Clés en Main</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Grille Tarifaire Transparente</h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Des formules adaptées à tous vos besoins de communication, sans abonnement caché.
+                </p>
             </div>
-            <h4 class="text-base font-extrabold text-white">Testez le rendu sur votre propre établissement !</h4>
-            <p class="text-xs text-slate-300 max-w-lg mx-auto">
-                Envoyez-nous 1 photo HD de votre plus bel espace. Nous vous offrirons un <strong>extrait vidéo immersif de démonstration</strong> sans aucun engagement.
-            </p>
-            <div class="pt-1 flex flex-row justify-center items-center gap-4 text-xs">
-                <span class="font-bold text-cyan-400">📧 contact@immerseo.fr</span>
-                <span class="text-slate-600">•</span>
-                <span class="font-bold text-slate-200">🌐 www.immerseo.fr</span>
+
+            <!-- Pricing Cards Grid -->
+            <div class="grid lg:grid-cols-3 gap-8 items-stretch mb-16">
+                
+                <!-- Pack 1: Découverte -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Découverte</span>
+                        <h3 class="text-xl font-extrabold text-white">Pack Short / Reel</h3>
+                        <p class="text-xs text-slate-400 mt-1">Idéal pour dynamiser un bien spécifique ou publier un post captivant.</p>
+
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-white">190 €</span>
+                            <span class="text-xs text-slate-400"> HT</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Vidéo courte (15 à 30 secondes)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> 3 à 5 pièces ou espaces animés
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Format Reel / TikTok (9:16)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Incrustations texte & titres
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance sonore
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="mt-8 w-full py-3 rounded-xl border border-slate-700 hover:border-cyan-500 text-white font-bold text-xs text-center transition-colors block">
+                        Commander ce pack
+                    </a>
+                </div>
+
+                <!-- Pack 2: Premium (Featured) -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-2 border-cyan-500 relative shadow-2xl shadow-cyan-950/40">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
+                        Recommandé
+                    </div>
+
+                    <div>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Populaire</span>
+                        <h3 class="text-xl font-extrabold text-white">Pack Premium</h3>
+                        <p class="text-xs text-slate-400 mt-1">L'immersion globale complète pour tout un établissement.</p>
+
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-white">390 €</span>
+                            <span class="text-xs text-slate-400"> HT</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-200">
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Vidéo HD longue (45 à 60 secondes)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> 7 à 10 espaces animés
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Transitions Jour/Nuit & Effets avancés
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Multi-formats : 16:9 + 9:16 (Web & RS)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Intégration Logo & Appel à l'action
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Guide de mise en ligne Google Maps
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="mt-8 w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs text-center transition-all shadow-lg shadow-cyan-500/20 block">
+                        Commander ce pack
+                    </a>
+                </div>
+
+                <!-- Pack 3: Partenaire Mensuel -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Récurrent</span>
+                        <h3 class="text-xl font-extrabold text-white">Partenaire Mensuel</h3>
+                        <p class="text-xs text-slate-400 mt-1">Pour agences immobilières & réseaux d'établissements.</p>
+
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-white">790 €</span>
+                            <span class="text-xs text-slate-400"> HT / mois</span>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> 4 vidéos immersives / mois
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Livraison prioritaire sous 48h
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Formats illimités (Reels, Web, Maps)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements inclus
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-cyan-400 font-bold">✓</span> Sans aucun engagement de durée
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="mt-8 w-full py-3 rounded-xl border border-slate-700 hover:border-cyan-500 text-white font-bold text-xs text-center transition-colors block">
+                        S'abonner sans engagement
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Workflow steps -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 text-center">
+                <h4 class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-6">Comment fonctionne la commande ?</h4>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">1</div>
+                        <h5 class="text-white font-bold text-sm">1. Envoi de vos photos HD</h5>
+                        <p class="text-xs text-slate-400">Transmettez-nous les visuels de vos locaux par e-mail ou formulaire.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">2</div>
+                        <h5 class="text-white font-bold text-sm">2. Production IA & Sound Design</h5>
+                        <p class="text-xs text-slate-400">Nous animons vos pièces, ajustons la lumière et ajoutons l'ambiance.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">3</div>
+                        <h5 class="text-white font-bold text-sm">3. Livraison prêts à publier</h5>
+                        <p class="text-xs text-slate-400">Recevez vos fichiers MP4 optimisés sous 48h chrono.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: CONTACT & FORMULAIRE (#contact) -->
+    <section id="contact" class="py-24 bg-slate-950/80 border-t border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Left: Contact info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest block">Contact Direct</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                        Demandez votre extrait vidéo <span class="text-cyan-400">offert</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Vous souhaitez tester l'effet de l'immersion IA sur votre propre établissement ? Envoyez-nous un message ou transmettez-nous 1 photo HD pour recevoir votre aperçu sans engagement.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 p-4 rounded-xl glass-card border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                                📧
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">E-mail direct</p>
+                                <a href="mailto:contact@immerseo.fr" class="text-sm font-bold text-white hover:text-cyan-400 transition-colors">contact@immerseo.fr</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl glass-card border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                                ⏱️
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Délai de réponse</p>
+                                <p class="text-sm font-bold text-white">Moins de 2 heures en journée</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative">
+                        
+                        <!-- Success Message Banner (Hidden by default) -->
+                        <div id="form-success" class="hidden bg-cyan-500/10 border border-cyan-500 text-cyan-300 p-6 rounded-xl text-center space-y-2 mb-6">
+                            <p class="text-lg font-bold">🎉 Message envoyé avec succès !</p>
+                            <p class="text-xs text-slate-300">Merci ! Nous avons bien reçu votre demande et nous vous recontacterons très rapidement.</p>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nom" class="block text-xs font-semibold text-slate-300 mb-1">Nom complet *</label>
+                                    <input type="text" id="nom" required placeholder="ex: Jean Dupont" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold text-slate-300 mb-1">Adresse e-mail *</label>
+                                    <input type="email" id="email" required placeholder="ex: jean@etablissement.fr" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="telephone" class="block text-xs font-semibold text-slate-300 mb-1">Téléphone (Optionnel)</label>
+                                    <input type="tel" id="telephone" placeholder="06 12 34 56 78" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label for="secteur" class="block text-xs font-semibold text-slate-300 mb-1">Secteur d'activité</label>
+                                    <select id="secteur" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors">
+                                        <option value="immobilier">Immobilier</option>
+                                        <option value="hotellerie">Hôtellerie & Gîtes</option>
+                                        <option value="restauration">Restaurant / Bar</option>
+                                        <option value="musique">École / Studio de musique</option>
+                                        <option value="autre">Autre secteur</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold text-slate-300 mb-1">Votre message / Détail du projet *</label>
+                                <textarea id="message" rows="4" required placeholder="Décrivez brièvement vos besoins ou indiquez-nous le lien de votre établissement..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold py-3.5 rounded-xl text-sm shadow-lg shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5">
+                                Envoyer ma demande de démonstration
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <span class="text-lg font-black tracking-widest text-white">IMMERSEO</span>
+                <p class="text-xs text-slate-500 mt-1">© 2026 Immerseo. Vues immersives & Animations IA pour professionnels.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400">
+                <a href="#accueil" class="hover:text-cyan-400 transition-colors">Accueil</a>
+                <a href="#concept" class="hover:text-cyan-400 transition-colors">Concept</a>
+                <a href="#tarifs" class="hover:text-cyan-400 transition-colors">Tarifs</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+
+            <div class="text-xs text-cyan-400 font-semibold">
+                www.immerseo.fr
             </div>
         </div>
+    </footer>
 
-        <!-- FOOTER -->
-        <div class="text-center text-[10px] text-slate-500 pt-1 border-t border-slate-800">
-            © Immerseo — Vues Immersives & Animations IA pour les professionnels. Tous droits réservés.
-        </div>
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-    </div>
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
+            // Close mobile menu when clicking any nav link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Contact Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            const successBox = document.getElementById('form-success');
+
+            // Simulate form submission
+            if (form && successBox) {
+                form.classList.add('hidden');
+                successBox.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
