@@ -183,35 +183,43 @@
                 <div class="lg:col-span-5">
                     <div class="glass-card rounded-2xl p-4 sm:p-6 relative border border-slate-800 shadow-2xl">
                         <div class="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
-                            Rendu Immersion IA
+                            Showreel Démo IA
                         </div>
                         
+                        <!-- Tabs Selector for 4 Sector Demos -->
+                        <div class="flex items-center justify-between gap-1 mb-3 bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-[11px]">
+                            <button onclick="switchDemo('immo')" id="tab-immo" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-bold transition-all text-slate-950 bg-cyan-400">🏡 Immo</button>
+                            <button onclick="switchDemo('hotel')" id="tab-hotel" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🏨 Hôtel</button>
+                            <button onclick="switchDemo('resto')" id="tab-resto" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🍽️ Resto</button>
+                            <button onclick="switchDemo('studio')" id="tab-studio" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🎵 Studio</button>
+                        </div>
+
                         <!-- Simulated Video Player Frame -->
                         <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group">
                             <!-- Background effect overlay -->
                             <div class="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-slate-900 to-slate-950"></div>
                             
                             <!-- Animated Pulse Showcase -->
-                            <div class="relative z-10 text-center p-6 space-y-4">
-                                <div class="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-400 flex items-center justify-center mx-auto shadow-inner group-hover:scale-110 transition-transform cursor-pointer">
-                                    <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
+                            <div class="relative z-10 text-center p-6 space-y-3">
+                                <div class="w-14 h-14 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-400 flex items-center justify-center mx-auto shadow-inner group-hover:scale-110 transition-transform cursor-pointer">
+                                    <svg class="w-7 h-7 fill-current ml-1" viewBox="0 0 24 24">
                                         <path d="M8 5v14l11-7z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-white font-bold text-base">Aperçu Vues Immersives</h3>
-                                    <p class="text-xs text-slate-400 mt-1">Transformez 1 simple photo HD en mouvement dynamique 3D</p>
+                                    <h3 id="demo-title" class="text-white font-bold text-base">Démo Immobilier HD</h3>
+                                    <p id="demo-desc" class="text-xs text-slate-400 mt-1">Visite immersive FPV d'appartement & villa meublée</p>
                                 </div>
                                 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-900/90 border border-slate-800 text-[11px] text-cyan-400">
-                                    <span>✨ Passage Jour / Nuit & Effets d'Ambiance</span>
+                                    <span>✨ Étape 1 : Découvrez la qualité du rendu secteur</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card Footer -->
                         <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                            <span>Format 9:16 & 16:9</span>
-                            <span class="text-cyan-400 font-semibold">Prêt à publier</span>
+                            <span>Format Reels / TikTok & Google Maps</span>
+                            <a href="#contact" class="text-cyan-400 font-semibold hover:underline">Débloquer votre extrait sur-mesure →</a>
                         </div>
                     </div>
                 </div>
@@ -495,22 +503,22 @@
 
             <!-- Workflow steps -->
             <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 text-center">
-                <h4 class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-6">Comment fonctionne la commande ?</h4>
+                <h4 class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-6">Comment fonctionne la découverte & commande ?</h4>
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="space-y-1">
                         <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">1</div>
-                        <h5 class="text-white font-bold text-sm">1. Envoi de vos photos HD</h5>
-                        <p class="text-xs text-slate-400">Transmettez-nous les visuels de vos locaux par e-mail ou via notre formulaire Tally.</p>
+                        <h5 class="text-white font-bold text-sm">1. Visionnez la démo de votre secteur</h5>
+                        <p class="text-xs text-slate-400">Consultez instantanément notre showreel vidéo (Immobilier, Hôtellerie, Restauration ou Studio).</p>
                     </div>
                     <div class="space-y-1">
                         <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">2</div>
-                        <h5 class="text-white font-bold text-sm">2. Production IA & Sound Design</h5>
-                        <p class="text-xs text-slate-400">Nous générons les mouvements fluides, les transitions d'ambiance et le son.</p>
+                        <h5 class="text-white font-bold text-sm">2. Échange rapide de qualification (3 min)</h5>
+                        <p class="text-xs text-slate-400">Un rapide contact par e-mail ou téléphone pour cibler votre espace clé et valider votre projet.</p>
                     </div>
                     <div class="space-y-1">
                         <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">3</div>
-                        <h5 class="text-white font-bold text-sm">3. Livraison HD sous 48h</h5>
-                        <p class="text-xs text-slate-400">Recevez vos fichiers MP4 prêts à être diffusés sur vos réseaux et Google Maps.</p>
+                        <h5 class="text-white font-bold text-sm">3. Extrait sur-mesure offert & Livraison 48h</h5>
+                        <p class="text-xs text-slate-400">Nous générons un extrait personnalisé offert sur votre photo HD puis nous livrons votre vidéo HD finale.</p>
                     </div>
                 </div>
             </div>
@@ -559,6 +567,15 @@
                     <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-3">
                         <h4 class="text-xs font-extrabold text-cyan-400 uppercase tracking-wider">Des questions ?</h4>
                         <details class="group">
+                            <summary class="text-xs font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                                Comment fonctionne l'extrait de démonstration offert ?
+                                <span class="text-cyan-400 text-sm group-open:rotate-180 transition-transform">↓</span>
+                            </summary>
+                            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                                Vous pouvez consulter directement nos démos secteur sur le site. Après un court échange (3 minutes par téléphone ou e-mail), nous créons gratuitement un extrait vidéo court sur la photo de votre propre établissement pour valider le rendu avant toute commande.
+                            </p>
+                        </details>
+                        <details class="group pt-2 border-t border-slate-800/60">
                             <summary class="text-xs font-semibold text-white cursor-pointer list-none flex justify-between items-center">
                                 Comment transmettre mes photos ?
                                 <span class="text-cyan-400 text-sm group-open:rotate-180 transition-transform">↓</span>
@@ -640,6 +657,33 @@
                     mobileMenu.classList.add('hidden');
                 });
             });
+        }
+
+        // Demo Sector Switcher (Étape 1 - Catalogue Démo)
+        const demoData = {
+            immo: { title: "Démo Immobilier HD", desc: "Visite immersive FPV d'appartement & villa meublée" },
+            hotel: { title: "Démo Hôtellerie & Gîte", desc: "Passage dynamique Jour / Nuit & aménagement Spa / Chambre" },
+            resto: { title: "Démo Restaurant & Lounge", desc: "Ambiance de salle vivante & mise en valeur des tables" },
+            studio: { title: "Démo Studio & Établissement", desc: "Mise en scène dynamique des équipements & salles de cours" }
+        };
+
+        function switchDemo(sector) {
+            const tabs = document.querySelectorAll('.demo-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-cyan-400', 'text-slate-950', 'font-bold');
+                tab.classList.add('text-slate-400', 'font-semibold');
+            });
+
+            const activeTab = document.getElementById(`tab-${sector}`);
+            if (activeTab) {
+                activeTab.classList.add('bg-cyan-400', 'text-slate-950', 'font-bold');
+                activeTab.classList.remove('text-slate-400', 'font-semibold');
+            }
+
+            if (demoData[sector]) {
+                document.getElementById('demo-title').textContent = demoData[sector].title;
+                document.getElementById('demo-desc').textContent = demoData[sector].desc;
+            }
         }
     </script>
 </body>
