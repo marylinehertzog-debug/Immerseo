@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immerseo - Plaquette de Présentation Commerciale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B0F19;
+            color: #F3F4F6;
+        }
+
+        /* Directives Impression / Export PDF */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                background-color: #0B0F19 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-container {
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                max-width: 210mm !important;
+                margin: 0 !important;
+                padding: 10mm 12mm !important;
+                background-color: #0B0F19 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-4 flex flex-col items-center justify-center">
+
+    <!-- Action Bar / Controls -->
+    <div class="no-print mb-6 flex flex-col sm:flex-row gap-4 items-center text-center">
+        <button onclick="window.print()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-6 rounded-full shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2 cursor-pointer text-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Télécharger / Imprimer la Plaquette (PDF 1 Page)
+        </button>
+        <p class="text-xs text-slate-400">💡 Conseil : Cochez <strong>"Graphiques d'arrière-plan"</strong> dans les options d'impression.</p>
+    </div>
+
+    <!-- Main Brochure Sheet Container -->
+    <div class="print-container w-full max-w-[850px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden p-6 sm:p-8 space-y-4">
+
+        <!-- HEADER / BRANDING -->
+        <div class="border-b border-slate-800 pb-4 flex flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <!-- Logo Officiel Immerseo -->
+                <div class="flex items-center gap-3">
+                    <img src="Logo Immerseo.png" alt="Immerseo" class="h-16 sm:h-20 w-auto object-contain rounded-lg hidden" onload="this.classList.remove('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.add('hidden');" onerror="this.classList.add('hidden');">
+                    <div class="flex items-center gap-3.5">
+                        <svg class="w-14 h-12 shrink-0" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 10 H80 V42" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 10 V62 H44" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polygon points="50,34 50,78 92,56" stroke="#00E5FF" stroke-width="6" fill="#0B0F19" stroke-linejoin="round"/>
+                        </svg>
+                        <div>
+                            <h1 class="text-3xl font-black tracking-[0.14em] text-white leading-none">IMMERSEO</h1>
+                            <p class="text-cyan-400 font-bold text-[10px] tracking-[0.24em] uppercase mt-1">VUES IMMERSIVES IA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-950 px-3.5 py-1.5 rounded-xl border border-slate-800 text-right">
+                <span class="text-[10px] text-slate-400 block">Présentation Offre Pro</span>
+                <span class="text-xs font-bold text-cyan-400">contact@immerseo.fr</span>
+            </div>
+        </div>
+
+        <!-- HERO SECTION / LE PROBLÈME vs LA SOLUTION -->
+        <div class="space-y-2">
+            <div class="inline-block px-2.5 py-0.5 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 font-semibold text-[10px] uppercase tracking-wider">
+                Le pouvoir de la vidéo intelligente
+            </div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white leading-tight">
+                Ne montrez plus seulement vos locaux. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Faites-les vivre avant même la première visite.</span>
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Les photos statiques ne suffisent plus pour capter l'attention sur les réseaux sociaux et Google Maps. Grâce à notre technologie d'animation IA, nous transformons vos photos HD en <strong>expériences vidéo immersives et dynamiques</strong>.
+            </p>
+        </div>
+
+        <!-- COMPARATIF AVANT / APRÈS CONCEPT -->
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-1">❌ La Photo Classique</div>
+                <ul class="space-y-1 text-[11px] text-slate-400">
+                    <li class="flex items-center gap-1.5"><span>•</span> Statique et impersonnelle</li>
+                    <li class="flex items-center gap-1.5"><span>•</span> Faible taux d'engagement</li>
+                    <li class="flex items-center gap-1.5"><span>•</span> Projection difficile pour le client</li>
+                </ul>
+            </div>
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-cyan-500/40 relative overflow-hidden">
+                <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider mb-1">✨ L'Immersion IA Immerseo</div>
+                <ul class="space-y-1 text-[11px] text-slate-200">
+                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Mouvements fluides, éclairages vivants</li>
+                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Passage Jour / Nuit & Figurants virtuels</li>
+                    <li class="flex items-center gap-1.5"><span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance captivante</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION PAR SECTEUR D'ACTIVITÉ -->
+        <div class="space-y-2 pt-2 border-t border-slate-800">
+            <h3 class="text-sm font-bold text-white">
+                Des solutions adaptées à votre secteur d'activité
+            </h3>
+
+            <div class="grid grid-cols-2 gap-3">
+                
+                <!-- CAS 1 : IMMOBILIER -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs">🏡</span>
+                        <h4 class="font-bold text-white text-xs">Agences & Promoteurs Immobiliers</h4>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-snug">
+                        Aidez vos acquéreurs à se projeter dans des biens vides ou à rénover. Valorisez vos mandats exclusifs avec des vidéos Reels/TikTok.
+                    </p>
+                </div>
+
+                <!-- CAS 2 : HÔTELLERIE -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs">🏨</span>
+                        <h4 class="font-bold text-white text-xs">Hôtels, Gîtes & Maisons d'Hôtes</h4>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-snug">
+                        Sublimez l'atmosphère de vos chambres, spas et terrasses. Montrez le passage du jour à une ambiance cosy nocturne.
+                    </p>
+                </div>
+
+                <!-- CAS 3 : RESTAURATION -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs">🍽️</span>
+                        <h4 class="font-bold text-white text-xs">Restaurants, Bars & Lounges</h4>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-snug">
+                        Donnez envie de réserver une table en affichant une salle vivante et une ambiance chaleureuse directement sur Google Maps.
+                    </p>
+                </div>
+
+                <!-- CAS 4 : ÉCOLES DE MUSIQUE / STUDIOS -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs">🎵</span>
+                        <h4 class="font-bold text-white text-xs">Écoles de Musique & Studios</h4>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-snug">
+                        Mettez en scène vos salles de cours et équipements. Donnez de l'énergie à vos locaux pour rassurer et attirer les futurs élèves.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BÉNÉFICES CLÉS & WORKFLOW -->
+        <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+            <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="space-y-0.5">
+                    <div class="text-white font-bold text-xs">Zero Déplacement</div>
+                    <p class="text-[10px] text-slate-400">Aucun tournage lourd sur place. Travail direct sur photos HD.</p>
+                </div>
+                <div class="space-y-0.5">
+                    <div class="text-white font-bold text-xs">Livraison sous 48h</div>
+                    <p class="text-[10px] text-slate-400">Vidéos HD optimisées prêtes à être diffusées rapidement.</p>
+                </div>
+                <div class="space-y-0.5">
+                    <div class="text-white font-bold text-xs">Multi-Supports</div>
+                    <p class="text-[10px] text-slate-400">Calibré pour Instagram, TikTok, Sites Web & Google Maps.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALL TO ACTION / OFFERT -->
+        <div class="bg-gradient-to-r from-cyan-950 via-slate-900 to-slate-950 p-4 rounded-xl border border-cyan-500/50 text-center space-y-2">
+            <div class="inline-block px-2.5 py-0.5 bg-cyan-500 text-slate-950 font-extrabold text-[9px] rounded-full uppercase tracking-wider">
+                Offre Découverte Prospection
+            </div>
+            <h4 class="text-base font-extrabold text-white">Testez le rendu sur votre propre établissement !</h4>
+            <p class="text-xs text-slate-300 max-w-lg mx-auto">
+                Envoyez-nous 1 photo HD de votre plus bel espace. Nous vous offrirons un <strong>extrait vidéo immersif de démonstration</strong> sans aucun engagement.
+            </p>
+            <div class="pt-1 flex flex-row justify-center items-center gap-4 text-xs">
+                <span class="font-bold text-cyan-400">📧 contact@immerseo.fr</span>
+                <span class="text-slate-600">•</span>
+                <span class="font-bold text-slate-200">🌐 www.immerseo.fr</span>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="text-center text-[10px] text-slate-500 pt-1 border-t border-slate-800">
+            © Immerseo — Vues Immersives & Animations IA pour les professionnels. Tous droits réservés.
+        </div>
+
+    </div>
+
+</body>
+</html>
