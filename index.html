@@ -78,9 +78,7 @@
                     <!-- SVG Fallback avec le design exact du nouveau logo -->
                     <div class="flex items-center gap-3">
                         <svg class="w-10 h-10 shrink-0 transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Cadre rectangulaire ouvert en bas à droite -->
                             <path d="M70 12 H10 V68 H55" stroke="#00E5FF" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
-                            <!-- Triangle Play imbriqué -->
                             <polygon points="53,35 53,75 88,55" stroke="#00E5FF" stroke-width="6" fill="#070A11" stroke-linejoin="miter"/>
                         </svg>
                         <div>
@@ -133,7 +131,6 @@
 
     <!-- SECTION 1: HERO / LANDING PAGE (#accueil) -->
     <section id="accueil" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <!-- Glow accents -->
         <div class="glow-effect top-10 left-1/2 -translate-x-1/2 opacity-60"></div>
         <div class="glow-effect -bottom-10 right-10 opacity-30"></div>
 
@@ -158,7 +155,6 @@
                         Transformez vos photos en vidéos immersives captivantes et boostez votre engagement sur <strong>Google Maps, Instagram, Facebook et LinkedIn</strong>.
                     </p>
 
-                    <!-- CTAs & Proof -->
                     <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <a href="#contact" class="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 px-8 rounded-full text-sm shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 text-center">
                             Demander un essai offert
@@ -168,7 +164,6 @@
                         </a>
                     </div>
 
-                    <!-- Trust indicators -->
                     <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
                         <div>
                             <p class="text-xl font-extrabold text-cyan-400">48h</p>
@@ -188,13 +183,47 @@
                 <!-- Right Column: Interactive Showcase Card -->
                 <div class="lg:col-span-5">
                     <div class="glass-card rounded-2xl p-4 sm:p-6 relative border border-slate-800 shadow-2xl">
-                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-lg z-20">
                             Showreel Démo IA
                         </div>
                         
-                        <!-- Banner Preview / Before-After Image -->
-                        <div class="mb-4 rounded-xl overflow-hidden border border-slate-800 shadow-md">
-                            <img src="Bannière Immerseo IA.png" alt="Bannière Immerseo IA - Photo Statique vers Immersion Vivante" class="w-full h-auto object-cover">
+                        <!-- Image de la bannière avec Fallback dynamique HTML si l'image n'est pas trouvée -->
+                        <div class="mb-4 rounded-xl overflow-hidden border border-cyan-500/30 relative">
+                            <img src="Bannière Immerseo IA.png" alt="Bannière Immerseo IA" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('banner-fallback').classList.remove('hidden');">
+                            
+                            <!-- Banner HTML Fallback (reproduit fidèlement le visuel de la bannière) -->
+                            <div id="banner-fallback" class="hidden bg-slate-950 p-3 sm:p-4 rounded-xl border border-cyan-500/40 text-center relative overflow-hidden">
+                                <div class="text-[11px] font-black tracking-widest text-white mb-2 flex items-center justify-center gap-1.5 uppercase">
+                                    <span>IMMERSEO <span class="text-cyan-400">IA</span></span>
+                                    <span class="text-slate-400 font-normal">|</span>
+                                    <span class="text-slate-300 font-bold">VOS ESPACES PRENNENT VIE</span>
+                                </div>
+
+                                <div class="grid grid-cols-11 items-center gap-1 my-2">
+                                    <!-- Photo Statique -->
+                                    <div class="col-span-5 bg-slate-900 border border-slate-700 rounded-lg p-2 relative">
+                                        <div class="text-[10px] text-slate-300 font-semibold mb-1">Photo Statique 📷</div>
+                                        <div class="aspect-[4/3] bg-slate-800 rounded flex items-center justify-center text-slate-500 text-[10px] border border-slate-700/60">
+                                            Vue Classique
+                                        </div>
+                                    </div>
+
+                                    <!-- Flèche -->
+                                    <div class="col-span-1 text-cyan-400 text-base font-black flex justify-center">➔</div>
+
+                                    <!-- Immersion Vivante IA -->
+                                    <div class="col-span-5 bg-cyan-950/40 border border-cyan-400/60 rounded-lg p-2 relative">
+                                        <div class="text-[10px] text-cyan-300 font-bold mb-1">Immersion Vivante IA ✨</div>
+                                        <div class="aspect-[4/3] bg-slate-900 rounded flex items-center justify-center text-cyan-400 text-[10px] border border-cyan-500/40 relative overflow-hidden">
+                                            <div class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center">
+                                                <span class="text-[8px] pl-0.5">▶</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-[10px] text-slate-400 mt-1">Boostez votre engagement sur Google Maps & Réseaux Sociaux</p>
+                            </div>
                         </div>
 
                         <!-- Tabs Selector for 4 Sector Demos -->
@@ -237,8 +266,6 @@
     <!-- SECTION 2: CONCEPT & SECTEURS (#concept & #secteurs) -->
     <section id="concept" class="py-20 bg-slate-950/60 border-y border-slate-800/80 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Pourquoi choisir Immerseo IA ?</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
@@ -251,8 +278,6 @@
 
             <!-- Comparison Grid -->
             <div class="grid md:grid-cols-2 gap-8 mb-20">
-                
-                <!-- Card 1: Old way -->
                 <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-red-500/80">
                     <div class="flex items-center justify-between mb-4">
                         <span class="text-red-400 font-bold text-sm uppercase tracking-wider">📷 Photo Statique</span>
@@ -274,7 +299,6 @@
                     </ul>
                 </div>
 
-                <!-- Card 2: Immerseo IA way -->
                 <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-cyan-400 relative overflow-hidden">
                     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-2xl"></div>
                     <div class="flex items-center justify-between mb-4">
@@ -296,10 +320,9 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
 
-            <!-- SECTEURS D'ACTIVITÉ (#secteurs) -->
+            <!-- SECTEURS D'ACTIVITÉ -->
             <div id="secteurs" class="pt-8">
                 <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
                     <h3 class="text-2xl font-bold text-white">Des solutions sur-mesure par secteur</h3>
@@ -307,54 +330,39 @@
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    
-                    <!-- Immobilier -->
                     <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
-                            🏡
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">🏡</div>
                         <h4 class="text-lg font-bold text-white">Immobilier</h4>
                         <p class="text-xs text-slate-400 leading-relaxed">
                             Agences & promoteurs : aidez vos acquéreurs à se projeter dans des biens meublés ou à rénover avec des visites animées.
                         </p>
                     </div>
 
-                    <!-- Hôtellerie -->
                     <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
-                            🏨
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">🏨</div>
                         <h4 class="text-lg font-bold text-white">Hôtels & Gîtes</h4>
                         <p class="text-xs text-slate-400 leading-relaxed">
                             Sublimez vos chambres, spas et extérieurs. Montrez le passage d'une ambiance ensoleillée à un cadre nocturne chaleureux.
                         </p>
                     </div>
 
-                    <!-- Restauration -->
                     <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
-                            🍽️
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">🍽️</div>
                         <h4 class="text-lg font-bold text-white">Restaurants & Bars</h4>
                         <p class="text-xs text-slate-400 leading-relaxed">
                             Donnez envie de réserver en présentant une salle vivante et chaleureuse directement sur votre fiche Google Maps.
                         </p>
                     </div>
 
-                    <!-- Musique & Studios -->
                     <div class="glass-card glass-card-hover p-6 rounded-2xl space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
-                            🎵
-                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">🎵</div>
                         <h4 class="text-lg font-bold text-white">Écoles & Studios</h4>
                         <p class="text-xs text-slate-400 leading-relaxed">
                             Mettez en scène vos équipements et studios de création pour rassurer et donner de l'énergie à vos futurs élèves.
                         </p>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -363,7 +371,6 @@
         <div class="glow-effect top-1/2 left-10 opacity-30"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Offres Clés en Main</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Grille Tarifaire Transparente</h2>
@@ -372,10 +379,8 @@
                 </p>
             </div>
 
-            <!-- Pricing Cards Grid -->
             <div class="grid lg:grid-cols-3 gap-8 items-stretch mb-16">
-                
-                <!-- Pack 1: Découverte -->
+                <!-- Pack 1 -->
                 <div class="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800">
                     <div>
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Découverte</span>
@@ -388,21 +393,11 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Vidéo courte (15 à 30 secondes)
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> 3 à 5 pièces ou espaces animés
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Format Reel / TikTok (9:16)
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Incrustations texte & titres
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance sonore
-                            </li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Vidéo courte (15 à 30 secondes)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 3 à 5 pièces ou espaces animés</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Format Reel / TikTok (9:16)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Incrustations texte & titres</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance sonore</li>
                         </ul>
                     </div>
 
@@ -416,7 +411,7 @@
                     </div>
                 </div>
 
-                <!-- Pack 2: Premium (Featured) -->
+                <!-- Pack 2 -->
                 <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-2 border-cyan-500 relative shadow-2xl shadow-cyan-950/40">
                     <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
                         Recommandé
@@ -433,24 +428,12 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-200">
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Vidéo HD longue (45 à 60 secondes)
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> 7 à 10 espaces animés
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Transitions Jour/Nuit & Effets avancés
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Multi-formats : 16:9 + 9:16 (Web & RS)
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Intégration Logo & Appel à l'action
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Guide de mise en ligne Google Maps
-                            </li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Vidéo HD longue (45 à 60 secondes)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 7 à 10 espaces animés</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Transitions Jour/Nuit & Effets avancés</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Multi-formats : 16:9 + 9:16 (Web & RS)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Intégration Logo & Appel à l'action</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Guide de mise en ligne Google Maps</li>
                         </ul>
                     </div>
 
@@ -464,7 +447,7 @@
                     </div>
                 </div>
 
-                <!-- Pack 3: Partenaire Mensuel -->
+                <!-- Pack 3 -->
                 <div class="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800">
                     <div>
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Récurrent</span>
@@ -477,21 +460,11 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> 4 vidéos immersives / mois
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Livraison prioritaire sous 48h
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Formats illimités (Reels, Web, Maps)
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements inclus
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-cyan-400 font-bold">✓</span> Sans aucun engagement de durée
-                            </li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 4 vidéos immersives / mois</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Livraison prioritaire sous 48h</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Formats illimités (Reels, Web, Maps)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements inclus</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Sans aucun engagement de durée</li>
                         </ul>
                     </div>
 
@@ -504,31 +477,7 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-
-            <!-- Workflow steps -->
-            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 text-center">
-                <h4 class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-6">Comment fonctionne la découverte & commande ?</h4>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="space-y-1">
-                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">1</div>
-                        <h5 class="text-white font-bold text-sm">1. Visionnez la démo de votre secteur</h5>
-                        <p class="text-xs text-slate-400">Consultez instantanément notre showreel vidéo (Immobilier, Hôtellerie, Restauration ou Studio).</p>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">2</div>
-                        <h5 class="text-white font-bold text-sm">2. Échange rapide de qualification (3 min)</h5>
-                        <p class="text-xs text-slate-400">Un rapide contact par e-mail ou téléphone pour cibler votre espace clé et valider votre projet.</p>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold text-xs flex items-center justify-center mx-auto mb-2">3</div>
-                        <h5 class="text-white font-bold text-sm">3. Extrait sur-mesure offert & Livraison 48h</h5>
-                        <p class="text-xs text-slate-400">Nous générons un extrait personnalisé offert sur votre photo HD puis nous livrons votre vidéo HD finale.</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -536,8 +485,6 @@
     <section id="contact" class="py-20 bg-slate-950/80 border-t border-slate-800 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-start">
-                
-                <!-- Left: Info & FAQ -->
                 <div class="lg:col-span-5 space-y-6">
                     <div>
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Contact & Commande</span>
@@ -549,9 +496,7 @@
 
                     <div class="space-y-4 pt-4 border-t border-slate-800">
                         <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
-                                📧
-                            </div>
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">📧</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase">E-mail direct</h4>
                                 <p class="text-xs text-slate-300">immerseo.ia@gmail.com</p>
@@ -559,53 +504,17 @@
                         </div>
 
                         <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
-                                ⚡
-                            </div>
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">⚡</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase">Délais de traitement</h4>
                                 <p class="text-xs text-slate-300">Réponse & devis sous 12h • Livraison sous 48h</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- FAQ Express -->
-                    <div class="glass-card rounded-2xl p-5 border border-slate-800 space-y-3">
-                        <h4 class="text-xs font-extrabold text-cyan-400 uppercase tracking-wider">Des questions ?</h4>
-                        <details class="group">
-                            <summary class="text-xs font-semibold text-white cursor-pointer list-none flex justify-between items-center">
-                                Comment fonctionne l'extrait de démonstration offert ?
-                                <span class="text-cyan-400 text-sm group-open:rotate-180 transition-transform">↓</span>
-                            </summary>
-                            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
-                                Vous pouvez consulter directement nos démos secteur sur le site. Après un court échange (3 minutes par téléphone ou e-mail), nous créons gratuitement un extrait vidéo court sur la photo de votre propre établissement pour valider le rendu avant toute commande.
-                            </p>
-                        </details>
-                        <details class="group pt-2 border-t border-slate-800/60">
-                            <summary class="text-xs font-semibold text-white cursor-pointer list-none flex justify-between items-center">
-                                Comment transmettre mes photos ?
-                                <span class="text-cyan-400 text-sm group-open:rotate-180 transition-transform">↓</span>
-                            </summary>
-                            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
-                                Indiquez simplement le lien de votre site web, de votre fiche Google Maps ou de votre dossier Drive/WeTransfer dans le formulaire.
-                            </p>
-                        </details>
-                        <details class="group pt-2 border-t border-slate-800/60">
-                            <summary class="text-xs font-semibold text-white cursor-pointer list-none flex justify-between items-center">
-                                Est-ce vraiment sans engagement ?
-                                <span class="text-cyan-400 text-sm group-open:rotate-180 transition-transform">↓</span>
-                            </summary>
-                            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
-                                Absolument. L'extrait de test offert est à 100% gratuit et sans aucune obligation d'achat.
-                            </p>
-                        </details>
-                    </div>
                 </div>
 
-                <!-- Right: Formulaire Tally Incrusté -->
                 <div class="lg:col-span-7">
                     <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800 relative">
-                        
                         <iframe 
                           data-tally-src="https://tally.so/embed/obYR5e?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
                           loading="lazy" 
@@ -619,10 +528,8 @@
                         <script>
                           var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
                         </script>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -640,15 +547,10 @@
             <p class="text-xs text-slate-500">
                 © 2026 Immerseo IA. Tous droits réservés. Vues Immersives IA & Animations Vidéo pour Professionnels.
             </p>
-            <div class="flex gap-6 text-xs text-slate-400">
-                <a href="#accueil" class="hover:text-cyan-400 transition-colors">Mentions Légales</a>
-                <a href="#accueil" class="hover:text-cyan-400 transition-colors">Confidentialité</a>
-            </div>
         </div>
     </footer>
 
     <script>
-        // Toggle Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -656,15 +558,11 @@
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-
             mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
             });
         }
 
-        // Demo Sector Switcher
         const demoData = {
             immo: { title: "Démo Immobilier HD", desc: "Visite immersive FPV d'appartement & villa meublée" },
             hotel: { title: "Démo Hôtellerie & Gîte", desc: "Passage dynamique Jour / Nuit & aménagement Spa / Chambre" },
@@ -673,18 +571,15 @@
         };
 
         function switchDemo(sector) {
-            const tabs = document.querySelectorAll('.demo-tab');
-            tabs.forEach(tab => {
+            document.querySelectorAll('.demo-tab').forEach(tab => {
                 tab.classList.remove('bg-cyan-400', 'text-slate-950', 'font-bold');
                 tab.classList.add('text-slate-400', 'font-semibold');
             });
-
             const activeTab = document.getElementById(`tab-${sector}`);
             if (activeTab) {
                 activeTab.classList.add('bg-cyan-400', 'text-slate-950', 'font-bold');
                 activeTab.classList.remove('text-slate-400', 'font-semibold');
             }
-
             if (demoData[sector]) {
                 document.getElementById('demo-title').textContent = demoData[sector].title;
                 document.getElementById('demo-desc').textContent = demoData[sector].desc;
