@@ -73,9 +73,6 @@
                 
                 <!-- Brand / Logo -->
                 <a href="#accueil" class="flex items-center gap-3 group">
-                    <img src="Logo Immerseo IA.png" alt="Immerseo IA Logo" class="h-10 w-auto object-contain hidden" onload="this.classList.remove('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.add('hidden');" onerror="this.classList.add('hidden');">
-                    
-                    <!-- SVG Fallback avec le design exact du nouveau logo -->
                     <div class="flex items-center gap-3">
                         <svg class="w-10 h-10 shrink-0 transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M70 12 H10 V68 H55" stroke="#00E5FF" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
@@ -180,81 +177,56 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive Showcase Card -->
+                <!-- Right Column: Interactive Video Player Card (sans la bannière) -->
                 <div class="lg:col-span-5">
                     <div class="glass-card rounded-2xl p-4 sm:p-6 relative border border-slate-800 shadow-2xl">
-                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-lg z-20">
-                            Showreel Démo IA
+                        <!-- Badge Showreel -->
+                        <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg z-20">
+                            SHOWREEL DÉMO IA
                         </div>
                         
-                        <!-- Image de la bannière avec Fallback dynamique HTML si l'image n'est pas trouvée -->
-                        <div class="mb-4 rounded-xl overflow-hidden border border-cyan-500/30 relative">
-                            <img src="Bannière Immerseo IA.png" alt="Bannière Immerseo IA" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('banner-fallback').classList.remove('hidden');">
+                        <!-- Navigation par Onglets -->
+                        <div class="flex items-center justify-between gap-1 mb-4 mt-2 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 text-xs">
+                            <button onclick="switchDemo('immo')" id="tab-immo" class="demo-tab flex-1 py-2 px-2 rounded-lg font-bold transition-all text-slate-950 bg-cyan-400 flex items-center justify-center gap-1">
+                                <span>🏡</span> <span>Immo</span>
+                            </button>
+                            <button onclick="switchDemo('hotel')" id="tab-hotel" class="demo-tab flex-1 py-2 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                                <span>🏨</span> <span>Hôtel</span>
+                            </button>
+                            <button onclick="switchDemo('resto')" id="tab-resto" class="demo-tab flex-1 py-2 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                                <span>🍽️</span> <span>Resto</span>
+                            </button>
+                            <button onclick="switchDemo('studio')" id="tab-studio" class="demo-tab flex-1 py-2 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all flex items-center justify-center gap-1">
+                                <span>🎵</span> <span>Studio</span>
+                            </button>
+                        </div>
+
+                        <!-- Emplacement Lecteur Vidéo YouTube -->
+                        <div class="relative aspect-video rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner">
+                            <iframe 
+                                id="demo-youtube-iframe"
+                                class="w-full h-full border-0"
+                                src="https://www.youtube-nocookie.com/embed/VIDE_A_REMPLACER?rel=0"
+                                title="Démo Immerseo IA"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <!-- Titre, Description & Étape sous la vidéo -->
+                        <div class="mt-4 text-center space-y-2">
+                            <h3 id="demo-title" class="text-white font-bold text-base">Démo Immobilier HD</h3>
+                            <p id="demo-desc" class="text-xs text-slate-400">Visite immersive FPV d'appartement & villa meublée</p>
                             
-                            <!-- Banner HTML Fallback (reproduit fidèlement le visuel de la bannière) -->
-                            <div id="banner-fallback" class="hidden bg-slate-950 p-3 sm:p-4 rounded-xl border border-cyan-500/40 text-center relative overflow-hidden">
-                                <div class="text-[11px] font-black tracking-widest text-white mb-2 flex items-center justify-center gap-1.5 uppercase">
-                                    <span>IMMERSEO <span class="text-cyan-400">IA</span></span>
-                                    <span class="text-slate-400 font-normal">|</span>
-                                    <span class="text-slate-300 font-bold">VOS ESPACES PRENNENT VIE</span>
-                                </div>
-
-                                <div class="grid grid-cols-11 items-center gap-1 my-2">
-                                    <!-- Photo Statique -->
-                                    <div class="col-span-5 bg-slate-900 border border-slate-700 rounded-lg p-2 relative">
-                                        <div class="text-[10px] text-slate-300 font-semibold mb-1">Photo Statique 📷</div>
-                                        <div class="aspect-[4/3] bg-slate-800 rounded flex items-center justify-center text-slate-500 text-[10px] border border-slate-700/60">
-                                            Vue Classique
-                                        </div>
-                                    </div>
-
-                                    <!-- Flèche -->
-                                    <div class="col-span-1 text-cyan-400 text-base font-black flex justify-center">➔</div>
-
-                                    <!-- Immersion Vivante IA -->
-                                    <div class="col-span-5 bg-cyan-950/40 border border-cyan-400/60 rounded-lg p-2 relative">
-                                        <div class="text-[10px] text-cyan-300 font-bold mb-1">Immersion Vivante IA ✨</div>
-                                        <div class="aspect-[4/3] bg-slate-900 rounded flex items-center justify-center text-cyan-400 text-[10px] border border-cyan-500/40 relative overflow-hidden">
-                                            <div class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center">
-                                                <span class="text-[8px] pl-0.5">▶</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="text-[10px] text-slate-400 mt-1">Boostez votre engagement sur Google Maps & Réseaux Sociaux</p>
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                                ✨ <span id="demo-step">Étape 1 : Découvrez la qualité du rendu secteur</span>
                             </div>
                         </div>
 
-                        <!-- Tabs Selector for 4 Sector Demos -->
-                        <div class="flex items-center justify-between gap-1 mb-3 bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-[11px]">
-                            <button onclick="switchDemo('immo')" id="tab-immo" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-bold transition-all text-slate-950 bg-cyan-400">🏡 Immo</button>
-                            <button onclick="switchDemo('hotel')" id="tab-hotel" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🏨 Hôtel</button>
-                            <button onclick="switchDemo('resto')" id="tab-resto" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🍽️ Resto</button>
-                            <button onclick="switchDemo('studio')" id="tab-studio" class="demo-tab flex-1 py-1.5 px-2 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">🎵 Studio</button>
-                        </div>
-
-                        <!-- Simulated Video Player Frame -->
-                        <div class="relative aspect-[16/9] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group">
-                            <div class="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-slate-900 to-slate-950"></div>
-                            
-                            <div class="relative z-10 text-center p-4 space-y-2">
-                                <div class="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-400 flex items-center justify-center mx-auto shadow-inner group-hover:scale-110 transition-transform cursor-pointer">
-                                    <svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 id="demo-title" class="text-white font-bold text-sm">Démo Immobilier HD</h3>
-                                    <p id="demo-desc" class="text-xs text-slate-400 mt-0.5">Visite immersive FPV d'appartement & villa meublée</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card Footer -->
-                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                            <span>Format Reels, TikTok & Google Maps</span>
-                            <a href="#contact" class="text-cyan-400 font-semibold hover:underline">Tester votre photo →</a>
+                        <!-- Pied de carte -->
+                        <div class="mt-5 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+                            <span>Format Reels / TikTok & Google Maps</span>
+                            <a href="#contact" class="text-cyan-400 font-bold hover:underline">Débloquer votre extrait sur-mesure →</a>
                         </div>
                     </div>
                 </div>
@@ -550,6 +522,7 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT GESTION DU MENU MOBILE ET DES DEMOS YOUTUBE -->
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -563,26 +536,58 @@
             });
         }
 
+        /* 
+           Remplace les identifiants YouTube ci-dessous (ex: 'dQw4w9WgXcQ') 
+           par les véritables ID de tes vidéos (la partie après "v=" dans l'URL YouTube)
+        */
         const demoData = {
-            immo: { title: "Démo Immobilier HD", desc: "Visite immersive FPV d'appartement & villa meublée" },
-            hotel: { title: "Démo Hôtellerie & Gîte", desc: "Passage dynamique Jour / Nuit & aménagement Spa / Chambre" },
-            resto: { title: "Démo Restaurant & Lounge", desc: "Ambiance de salle vivante & mise en valeur des tables" },
-            studio: { title: "Démo Studio & Établissement", desc: "Mise en scène dynamique des équipements & salles de cours" }
+            immo: { 
+                youtubeId: "ID_YOUTUBE_IMMO", 
+                title: "Démo Immobilier HD", 
+                desc: "Visite immersive FPV d'appartement & villa meublée",
+                step: "Étape 1 : Découvrez la qualité du rendu secteur"
+            },
+            hotel: { 
+                youtubeId: "ID_YOUTUBE_HOTEL", 
+                title: "Démo Hôtellerie & Gîte", 
+                desc: "Passage dynamique Jour / Nuit & aménagement Spa / Chambre",
+                step: "Étape 1 : Ambiance lumineuse & mise en valeur"
+            },
+            resto: { 
+                youtubeId: "ID_YOUTUBE_RESTO", 
+                title: "Démo Restaurant & Lounge", 
+                desc: "Ambiance de salle vivante & mise en valeur des tables",
+                step: "Étape 1 : Animation de salle & projection client"
+            },
+            studio: { 
+                youtubeId: "ID_YOUTUBE_STUDIO", 
+                title: "Démo Studio & Établissement", 
+                desc: "Mise en scène dynamique des équipements & salles de cours",
+                step: "Étape 1 : Valorisation de vos équipements"
+            }
         };
 
         function switchDemo(sector) {
+            // Mise à jour de l'apparence des onglets
             document.querySelectorAll('.demo-tab').forEach(tab => {
                 tab.classList.remove('bg-cyan-400', 'text-slate-950', 'font-bold');
                 tab.classList.add('text-slate-400', 'font-semibold');
             });
+
             const activeTab = document.getElementById(`tab-${sector}`);
             if (activeTab) {
                 activeTab.classList.add('bg-cyan-400', 'text-slate-950', 'font-bold');
                 activeTab.classList.remove('text-slate-400', 'font-semibold');
             }
-            if (demoData[sector]) {
-                document.getElementById('demo-title').textContent = demoData[sector].title;
-                document.getElementById('demo-desc').textContent = demoData[sector].desc;
+
+            // Mise à jour du contenu vidéo et des textes associés
+            const data = demoData[sector];
+            if (data) {
+                const iframe = document.getElementById('demo-youtube-iframe');
+                iframe.src = `https://www.youtube-nocookie.com/embed/${data.youtubeId}?rel=0`;
+                document.getElementById('demo-title').textContent = data.title;
+                document.getElementById('demo-desc').textContent = data.desc;
+                document.getElementById('demo-step').textContent = data.step;
             }
         }
     </script>
