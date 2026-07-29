@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphism & Custom Gradient Utilities */
         .glass-card {
             background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(12px);
@@ -48,7 +47,6 @@
             pointer-events: none;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -66,12 +64,11 @@
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-slate-950">
 
-    <!-- NAVIGATION BAR (Fixed Header) -->
+    <!-- NAVIGATION BAR -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Brand / Logo -->
                 <a href="#accueil" class="flex items-center gap-3 group">
                     <div class="flex items-center gap-3">
                         <svg class="w-10 h-10 shrink-0 transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +85,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Nav Links -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
                     <a href="#accueil" class="hover:text-cyan-400 transition-colors">Accueil</a>
                     <a href="#concept" class="hover:text-cyan-400 transition-colors">Concept</a>
@@ -97,14 +93,12 @@
                     <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
                 </nav>
 
-                <!-- Action Button -->
                 <div class="hidden sm:flex items-center gap-4">
                     <a href="#contact" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-5 rounded-full text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all transform hover:scale-105">
                         Test Gratuit
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -113,7 +107,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
             <a href="#accueil" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Accueil</a>
             <a href="#concept" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Concept</a>
@@ -126,7 +119,7 @@
         </div>
     </header>
 
-    <!-- SECTION 1: HERO / LANDING PAGE (#accueil) -->
+    <!-- HERO SECTION -->
     <section id="accueil" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
         <div class="glow-effect top-10 left-1/2 -translate-x-1/2 opacity-60"></div>
         <div class="glow-effect -bottom-10 right-10 opacity-30"></div>
@@ -134,7 +127,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Left Column: Copywriting -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold text-xs tracking-wide">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
@@ -177,15 +169,13 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive Video Player Card (sans la bannière) -->
+                <!-- Showreel Card -->
                 <div class="lg:col-span-5">
                     <div class="glass-card rounded-2xl p-4 sm:p-6 relative border border-slate-800 shadow-2xl">
-                        <!-- Badge Showreel -->
                         <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg z-20">
                             SHOWREEL DÉMO IA
                         </div>
                         
-                        <!-- Navigation par Onglets -->
                         <div class="flex items-center justify-between gap-1 mb-4 mt-2 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 text-xs">
                             <button onclick="switchDemo('immo')" id="tab-immo" class="demo-tab flex-1 py-2 px-2 rounded-lg font-bold transition-all text-slate-950 bg-cyan-400 flex items-center justify-center gap-1">
                                 <span>🏡</span> <span>Immo</span>
@@ -201,7 +191,6 @@
                             </button>
                         </div>
 
-                        <!-- Emplacement Lecteur Vidéo YouTube -->
                         <div class="relative aspect-video rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner">
                             <iframe 
                                 id="demo-youtube-iframe"
@@ -213,7 +202,6 @@
                             </iframe>
                         </div>
 
-                        <!-- Titre, Description & Étape sous la vidéo -->
                         <div class="mt-4 text-center space-y-2">
                             <h3 id="demo-title" class="text-white font-bold text-base">Démo Immobilier HD</h3>
                             <p id="demo-desc" class="text-xs text-slate-400">Visite immersive FPV d'appartement & villa meublée</p>
@@ -223,7 +211,6 @@
                             </div>
                         </div>
 
-                        <!-- Pied de carte -->
                         <div class="mt-5 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
                             <span>Format Reels / TikTok & Google Maps</span>
                             <a href="#contact" class="text-cyan-400 font-bold hover:underline">Débloquer votre extrait sur-mesure →</a>
@@ -235,7 +222,7 @@
         </div>
     </section>
 
-    <!-- SECTION 2: CONCEPT & SECTEURS (#concept & #secteurs) -->
+    <!-- SECTION 2: CONCEPT & SECTEURS -->
     <section id="concept" class="py-20 bg-slate-950/60 border-y border-slate-800/80 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -248,7 +235,6 @@
                 </p>
             </div>
 
-            <!-- Comparison Grid -->
             <div class="grid md:grid-cols-2 gap-8 mb-20">
                 <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-red-500/80">
                     <div class="flex items-center justify-between mb-4">
@@ -338,7 +324,7 @@
         </div>
     </section>
 
-    <!-- SECTION 3: TARIFS (#tarifs) -->
+    <!-- SECTION 3: TARIFS (ALIGNÉS SUR LE CADRAGE OFFRES) -->
     <section id="tarifs" class="py-24 relative">
         <div class="glow-effect top-1/2 left-10 opacity-30"></div>
         
@@ -365,16 +351,16 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Vidéo courte (15 à 30 secondes)</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 3 à 5 pièces ou espaces animés</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Format Reel / TikTok (9:16)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 1 Vidéo courte (15 à 30 secondes)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 3 à 5 photos HD animées (Focus 1 zone)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Format Reel / TikTok vertical (9:16)</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Incrustations texte & titres</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Sound design & Ambiance sonore</li>
                         </ul>
                     </div>
 
                     <div class="mt-8 space-y-2">
-                        <a href="https://buy.stripe.com/3cIdR9a9n7Yycm8bss9bO00" target="_blank" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs text-center transition-all shadow-md block">
+                        <a href="https://buy.stripe.com/VOTRE_LIEN_STRIPE_190" target="_blank" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs text-center transition-all shadow-md block">
                             💳 Commander & Payer (190 € HT)
                         </a>
                         <a href="#contact" class="w-full py-2.5 rounded-xl border border-slate-700 hover:border-cyan-500 text-slate-300 hover:text-white font-semibold text-[11px] text-center transition-colors block">
@@ -383,7 +369,7 @@
                     </div>
                 </div>
 
-                <!-- Pack 2 -->
+                <!-- Pack 2 (Featured) -->
                 <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-2 border-cyan-500 relative shadow-2xl shadow-cyan-950/40">
                     <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
                         Recommandé
@@ -400,17 +386,17 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-200">
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Vidéo HD longue (45 à 60 secondes)</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 7 à 10 espaces animés</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 1 Film Immersif Master (45 à 60 secondes)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 7 à 10 photos HD animées (Complet)</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Transitions Jour/Nuit & Effets avancés</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Multi-formats : 16:9 + 9:16 (Web & RS)</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Intégration Logo & Appel à l'action</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Intégration Logo & Call to Action</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Guide de mise en ligne Google Maps</li>
                         </ul>
                     </div>
 
                     <div class="mt-8 space-y-2">
-                        <a href="https://buy.stripe.com/28EbJ1ftHemWfykdAA9bO01" target="_blank" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs text-center transition-all shadow-lg shadow-cyan-500/20 block">
+                        <a href="https://buy.stripe.com/VOTRE_LIEN_STRIPE_390" target="_blank" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs text-center transition-all shadow-lg shadow-cyan-500/20 block">
                             💳 Commander & Payer (390 € HT)
                         </a>
                         <a href="#contact" class="w-full py-2.5 rounded-xl border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 font-semibold text-[11px] text-center transition-colors block">
@@ -419,12 +405,12 @@
                     </div>
                 </div>
 
-                <!-- Pack 3 -->
+                <!-- Pack 3 (Partenaire Mensuel Aligné) -->
                 <div class="glass-card glass-card-hover rounded-2xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800">
                     <div>
                         <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Récurrent</span>
                         <h3 class="text-xl font-extrabold text-white">Partenaire Mensuel</h3>
-                        <p class="text-xs text-slate-400 mt-1">Pour agences immobilières & réseaux d'établissements.</p>
+                        <p class="text-xs text-slate-400 mt-1">Pour agences immobilières, hôtels & réseaux d'établissements.</p>
 
                         <div class="my-6">
                             <span class="text-4xl font-black text-white">790 €</span>
@@ -432,16 +418,17 @@
                         </div>
 
                         <ul class="space-y-3 text-xs text-slate-300">
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 4 vidéos immersives / mois</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 4 Films Immersifs Master / mois</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> <strong>+ 4 à 8 Reels bonus</strong> (Auto-Clipping IA)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Photos pour 4 projets complets / mois</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Livraison prioritaire sous 48h</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 4 à 8 courtes vidéos (Reels, Web, Maps)</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements inclus</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements illimités</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Sans aucun engagement de durée</li>
                         </ul>
                     </div>
 
                     <div class="mt-8 space-y-2">
-                        <a href="https://buy.stripe.com/cNi3cv1CRemWcm81RS9bO02" target="_blank" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs text-center transition-all shadow-md block">
+                        <a href="https://buy.stripe.com/VOTRE_LIEN_STRIPE_790" target="_blank" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold text-xs text-center transition-all shadow-md block">
                             💳 S'abonner (790 € HT/mois)
                         </a>
                         <a href="#contact" class="w-full py-2.5 rounded-xl border border-slate-700 hover:border-cyan-500 text-slate-300 hover:text-white font-semibold text-[11px] text-center transition-colors block">
@@ -453,7 +440,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: CONTACT & COMMANDE (#contact) -->
+    <!-- SECTION 4: CONTACT & COMMANDE -->
     <section id="contact" class="py-20 bg-slate-950/80 border-t border-slate-800 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-start">
@@ -522,7 +509,6 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT GESTION DU MENU MOBILE ET DES DEMOS YOUTUBE -->
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -536,10 +522,6 @@
             });
         }
 
-        /* 
-           Remplace les identifiants YouTube ci-dessous (ex: 'dQw4w9WgXcQ') 
-           par les véritables ID de tes vidéos (la partie après "v=" dans l'URL YouTube)
-        */
         const demoData = {
             immo: { 
                 youtubeId: "ID_YOUTUBE_IMMO", 
@@ -568,7 +550,6 @@
         };
 
         function switchDemo(sector) {
-            // Mise à jour de l'apparence des onglets
             document.querySelectorAll('.demo-tab').forEach(tab => {
                 tab.classList.remove('bg-cyan-400', 'text-slate-950', 'font-bold');
                 tab.classList.add('text-slate-400', 'font-semibold');
@@ -580,7 +561,6 @@
                 activeTab.classList.remove('text-slate-400', 'font-semibold');
             }
 
-            // Mise à jour du contenu vidéo et des textes associés
             const data = demoData[sector];
             if (data) {
                 const iframe = document.getElementById('demo-youtube-iframe');
