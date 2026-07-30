@@ -155,8 +155,8 @@
 
                     <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
                         <div>
-                            <p class="text-xl font-extrabold text-cyan-400">48h</p>
-                            <p class="text-xs text-slate-400">Livraison ultra-rapide</p>
+                            <p class="text-xl font-extrabold text-cyan-400">48h*</p>
+                            <p class="text-xs text-slate-400">Délai moyen indicatif</p>
                         </div>
                         <div>
                             <p class="text-xl font-extrabold text-cyan-400">100%</p>
@@ -422,8 +422,8 @@
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> 4 Films Immersifs Master / mois</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> <strong>+ 4 à 8 Reels bonus</strong> (Auto-Clipping IA)</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Photos pour 4 projets complets / mois</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Livraison prioritaire sous 48h</li>
-                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements illimités</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Traitement prioritaire</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Retouches & ajustements inclus</li>
                             <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Sans aucun engagement de durée</li>
                         </ul>
                     </div>
@@ -467,7 +467,7 @@
                             <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">⚡</div>
                             <div>
                                 <h4 class="text-xs font-bold text-white uppercase">Délais de traitement</h4>
-                                <p class="text-xs text-slate-300">Réponse & devis sous 12h • Livraison sous 48h</p>
+                                <p class="text-xs text-slate-300">Réponse sous 12h • Délai indicatif de réalisation : 48h (selon charge et disponibilité)</p>
                             </div>
                         </div>
                     </div>
@@ -486,7 +486,7 @@
                           title="Contact & Commande Immerseo IA">
                         </iframe>
                         <script>
-                          var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+                          var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onload=v,s.onerror=v,d.body.appendChild(s);}
                         </script>
                     </div>
                 </div>
@@ -494,7 +494,7 @@
         </div>
     </section>
 
-    <!-- PIED DE PAGE -->
+    <!-- PIED DE PAGE AVEC MENTIONS LÉGALES & CGV -->
     <footer class="bg-slate-950 border-t border-slate-800 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
@@ -504,13 +504,43 @@
                 </svg>
                 <span class="text-lg font-black tracking-widest text-white">IMMERSEO <span class="text-cyan-400">IA</span></span>
             </div>
+            
             <p class="text-xs text-slate-500">
                 © 2026 Immerseo IA. Tous droits réservés. Vues Immersives IA & Animations Vidéo pour Professionnels.
             </p>
+
+            <!-- LIENS MENTIONS LÉGALES & CGV OUVRANT UNE FENÊTRE MODALE -->
+            <div class="flex gap-6 text-xs text-slate-400">
+                <button onclick="openLegalModal('mentions')" class="hover:text-cyan-400 transition-colors cursor-pointer underline">Mentions Légales</button>
+                <button onclick="openLegalModal('cgv')" class="hover:text-cyan-400 transition-colors cursor-pointer underline">CGV</button>
+                <button onclick="openLegalModal('privacy')" class="hover:text-cyan-400 transition-colors cursor-pointer underline">Confidentialité</button>
+            </div>
         </div>
     </footer>
 
-    <!-- SCRIPT DE GESTION DU MENU MOBILE ET DES DEMOS -->
+    <!-- FENÊTRE MODALE POUR AFFICHER LES TEXTES JURIDIQUES -->
+    <div id="legal-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
+            
+            <!-- En-tête de la fenêtre modale -->
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center">
+                <h3 id="modal-title" class="text-lg font-bold text-white">Information Juridique</h3>
+                <button onclick="closeLegalModal()" class="text-slate-400 hover:text-white text-xl font-bold p-1">✕</button>
+            </div>
+
+            <!-- Contenu dynamique -->
+            <div id="modal-body" class="p-6 overflow-y-auto space-y-4 text-xs text-slate-300 leading-relaxed">
+                <!-- Rempli en JS -->
+            </div>
+
+            <!-- Pied de fenêtre -->
+            <div class="p-4 border-t border-slate-800 text-right">
+                <button onclick="closeLegalModal()" class="bg-cyan-500 text-slate-950 font-bold px-5 py-2 rounded-full text-xs">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE GESTION DU MENU ET DES DÉMOS YOUTUBE ET DE LA MODALE -->
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -524,10 +554,7 @@
             });
         }
 
-        /* Tableau des vidéos par secteur :
-           L'ID RUPCpr2erRM est configuré par défaut. 
-           Remplacez les ID des autres secteurs dès que vos autres vidéos seront en ligne !
-        */
+        /* DÉMOS YOUTUBE PAR SECTEUR */
         const demoData = {
             immo: { 
                 youtubeId: "RUPCpr2erRM", 
@@ -575,6 +602,75 @@
                 document.getElementById('demo-desc').textContent = data.desc;
                 document.getElementById('demo-step').textContent = data.step;
             }
+        }
+
+        /* GESTION DE LA FENÊTRE MODALE JURIDIQUE */
+        const legalTexts = {
+            mentions: {
+                title: "Mentions Légales",
+                body: `
+                    <p><strong>1. Éditeur du site :</strong><br>
+                    Le site internet <em>immerseo-ia.vercel.app</em> est édité par Maryline Hertzog, exerçant en tant qu'Entrepreneur Individuel sous la marque commerciale <strong>Immerseo IA</strong>.<br>
+                    - Contact : <a href="mailto:immerseo.ia@gmail.com" class="text-cyan-400">immerseo.ia@gmail.com</a><br>
+                    - SIRET : [Remplacer par votre SIRET]<br>
+                    - TVA : TVA non applicable, art. 293 B du CGI (Franchise en base de TVA).</p>
+
+                    <p><strong>2. Directeur de la publication :</strong><br>
+                    Maryline Hertzog.</p>
+
+                    <p><strong>3. Hébergeur du site :</strong><br>
+                    Vercel Inc.<br>
+                    Adresse : 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br>
+                    Site Web : <a href="https://vercel.com" target="_blank" class="text-cyan-400">www.vercel.com</a></p>
+
+                    <p><strong>4. Propriété intellectuelle :</strong><br>
+                    L'ensemble des textes, visuels, logos et éléments graphiques présents sur le site sont la propriété exclusive d'Immerseo IA ou de ses partenaires. Toute reproduction sans autorisation préalable est interdite.</p>
+                `
+            },
+            cgv: {
+                title: "Conditions Générales de Vente (CGV)",
+                body: `
+                    <p><strong>Article 1 — Objet :</strong><br>
+                    Les présentes CGV régissent les prestations de services d'animation vidéo et de création visuelle assistées par IA proposées par Immerseo IA.</p>
+
+                    <p><strong>Article 2 — Commandes et Tarifs :</strong><br>
+                    Les prix sont indiqués en Euros Hors Taxes (TVA non applicable, art. 293 B du CGI). Le règlement s'effectue à la commande par paiement sécurisé via Stripe.</p>
+
+                    <p><strong>Article 3 — Droits sur les fichiers source :</strong><br>
+                    Le Client garantit qu'il détient l'intégralité des droits de propriété intellectuelle et d'image sur les photographies HD qu'il transmet à Immerseo IA.</p>
+
+                    <p><strong>Article 4 — Délais de livraison et disponibilité :</strong><br>
+                    Le délai de réalisation habituel est de <strong>48 heures ouvrées</strong> après réception des photos conformes et du règlement. Ce délai est fourni à titre <strong>strictement indicatif</strong> et peut varier selon la charge de travail, l'affluence des commandes ou les périodes de congés/fermeture du Prestataire (par exemple lors de congés d'été de 2 semaines ou congés de fin d'année). Un allongement du délai indicatif ne donne droit à aucune indemnité ni annulation automatique.</p>
+
+                    <p><strong>Article 5 — Référence commerciale :</strong><br>
+                    Sauf refus écrit du Client, Immerseo IA se réserve le droit de citer le Client et de diffuser de courts extraits des vidéos produites à titre de démonstration sur son portfolio et ses réseaux sociaux.</p>
+                `
+            },
+            privacy: {
+                title: "Politique de Confidentialité & RGPD",
+                body: `
+                    <p><strong>Collecte des données :</strong><br>
+                    Les informations recueillies via le formulaire de contact (nom, adresse e-mail, photos) sont destinées exclusivement au traitement de vos commandes et au suivi de la relation commerciale par Immerseo IA.</p>
+
+                    <p><strong>Conservation & Droits :</strong><br>
+                    Vos données personnelles sont conservées de manière sécurisée et ne sont jamais cédées ni vendues à des tiers. Vous disposez d'un droit d'accès, de rectification et de suppression de vos données en écrivant à <a href="mailto:immerseo.ia@gmail.com" class="text-cyan-400">immerseo.ia@gmail.com</a>.</p>
+
+                    <p><strong>Cookies & Services tiers :</strong><br>
+                    Ce site utilise des modules intégrés tiers (Tally pour le formulaire, YouTube pour la vidéo et Stripe pour le paiement) qui peuvent déposer des cookies fonctionnels nécessaires au service.</p>
+                `
+            }
+        };
+
+        function openLegalModal(type) {
+            if (legalTexts[type]) {
+                document.getElementById('modal-title').textContent = legalTexts[type].title;
+                document.getElementById('modal-body').innerHTML = legalTexts[type].body;
+                document.getElementById('legal-modal').classList.remove('hidden');
+            }
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legal-modal').classList.add('hidden');
         }
     </script>
 </body>
