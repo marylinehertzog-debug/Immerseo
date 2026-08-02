@@ -605,7 +605,7 @@
 
     <!-- SCRIPT TALLY EMBED GLOBAL -->
     <script>
-      var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+      var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not zá visible]").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
     </script>
 
     <!-- SCRIPT DE GESTION DU SITE, DES CHECKBOX CGV, DES DÉMOS YOUTUBE ET DE LA REDIRECTION MERCI -->
@@ -712,7 +712,7 @@
             }
         }
 
-        /* GESTION DE LA FENÊTRE MODALE JURIDIQUE */
+        /* GESTION DE LA FENÊTRE MODALE JURIDIQUE (CGV COMPLÈTES EXONÉRÉES ET COMPLÈTES) */
         const legalTexts = {
             mentions: {
                 title: "Mentions Légales",
@@ -736,27 +736,51 @@
                 `
             },
             cgv: {
-                title: "Conditions Générales de Vente (CGV)",
+                title: "Conditions Générales de Vente (CGV) — Immerseo IA",
                 body: `
-                    <p><strong>Article 1 — Objet :</strong><br>
-                    Les présentes CGV régissent les prestations de services d'animation vidéo et de création visuelle assistées par IA proposées par Immerseo IA.</p>
+                    <p class="text-slate-400 text-[11px] mb-2">En vigueur au 1er janvier 2026</p>
 
-                    <p><strong>Article 2 — Commandes et Tarifs :</strong><br>
-                    Les prix sont indiqués en Euros Hors Taxes (TVA non applicable, art. 293 B du CGI). Le règlement s'effectue à la commande par paiement sécurisé via Stripe.</p>
+                    <p><strong>Article 1 — Objet et Champ d'Application</strong><br>
+                    Les présentes Conditions Générales de Vente (« CGV ») régissent l'ensemble des prestations de services conclues par l'entreprise individuelle Maryline Hertzog / Immerseo IA (« le Prestataire ») auprès de ses clients professionnels et particuliers (« le Client »). Immerseo IA propose des services de création, d'animation visuelle et de retouche vidéo assistées par intelligence artificielle à partir de photographies haute définition fournies par le Client. Toute commande passée auprès d'Immerseo IA implique l'acceptation sans réserve par le Client des présentes CGV.</p>
 
-                    <p><strong>Article 3 — Droits sur les fichiers source :</strong><br>
-                    Le Client garantit qu'il détient l'intégralité des droits de propriété intellectuelle et d'image sur les photographies HD qu'il transmet à Immerseo IA.</p>
+                    <p><strong>Article 2 — Commandes et Modalités de Paiement</strong><br>
+                    • <em>Prise de commande :</em> Les commandes s'effectuent en ligne via le site internet du Prestataire, les formulaires de commande dédiés (ex. Tally) ou par validation de devis.<br>
+                    • <em>Tarifs :</em> Les prix sont indiqués en Euros HT (Hors Taxes). Conformément à l'article 293 B du Code Général des Impôts (franchise en base de TVA pour les micro-entreprises), la TVA est non applicable (« TVA non applicable, art. 293 B du CGI »).<br>
+                    • <em>Paiement :</em> Le règlement s'effectue au moment de la commande par carte bancaire via la plateforme sécurisée Stripe, ou selon les modalités convenues sur la facture/devis (virement bancaire).<br>
+                    • <em>Exécution :</em> La réalisation de la prestation démarre à réception du paiement intégral et du dépôt complet des photographies requises.</p>
 
-                    <p><strong>Article 4 — Délais de livraison et disponibilité :</strong><br>
-                    Le délai de réalisation habituel est de <strong>48 heures ouvrées</strong> après réception des photos conformes et du règlement. Ce délai est fourni à titre <strong>strictement indicatif</strong> et peut varier selon la charge de travail, l'affluence des commandes ou les périodes de congés/fermeture du Prestataire (par exemple lors de congés d'été de 2 semaines ou congés de fin d'année). Un allongement du délai indicatif ne donne droit à aucune indemnité ni annulation automatique.</p>
+                    <p><strong>Article 3 — Obligations du Client et Propriété des Fichiers Source</strong><br>
+                    • <em>Fourniture des visuels :</em> Le Client s'engage à fournir des photographies de haute qualité (HD) libres de droits ou pour lesquelles il dispose de l'intégralité des autorisations d'exploitation nécessaires.<br>
+                    • <em>Garantie sur les droits :</em> Le Client garantit expressément qu'il détient tous les droits de propriété intellectuelle et droits à l'image afférents aux photographies transmises (bâtiments, décors, marques, personnes). Le Prestataire ne saurait être tenu responsable d'une violation de droits d'auteur ou de droit d'image relative aux fichiers fournis par le Client.</p>
 
-                    <p><strong>Article 5 — Droit de rétractation et Renoncement express :</strong><br>
-                    Conformément à l'article L. 221-18 du Code de la consommation, le Client acheteur à titre particulier ou consommateur dispose en principe d'un droit de rétractation de 14 jours.<br>
-                    Toutefois, s'agissant de la fourniture d'un service de création numérique sur-mesure et nettement personnalisé (confectionné spécifiquement selon les fichiers et critères fournis par le Client) et exécuté dans un délai court (48h), conformément à l'article L. 221-28 du Code de la consommation (notamment les alinéas 1° et 3°), le Client demande expressément le début de l'exécution de la prestation immédiatement après le paiement de sa commande et avant la fin du délai légal de 14 jours.<br>
-                    En validant sa commande et en transmettant ses fichiers sur le formulaire de brief créatif post-achat, le Client reconnaît et accepte expressément que le traitement de sa commande débute immédiatement et renonce ainsi expressément à son droit de rétractation une fois la prestation entamée ou pleinement exécutée.</p>
+                    <p><strong>Article 4 — Délais de Livraison et Disponibilité</strong><br>
+                    • <em>Caractère indicatif du délai :</em> Le délai de livraison habituel est de <strong>48 heures ouvrées</strong> à compter de la réception des visuels conformes et du règlement intégral. Ce délai est donné à titre strictement indicatif.<br>
+                    • <em>Ajustement du délai (Charge & Congés) :</em> Le délai peut varier selon la charge de travail/volume de commandes en cours ou lors de périodes de fermeture annuelle/congés payés du Prestataire.<br>
+                    • <em>Absence d'indemnité :</em> Un dépassement raisonnable du délai indicatif ne pourra donner lieu à des dommages-intérêts, pénalités de retard ou annulation automatique.<br>
+                    • <em>Format des livrables :</em> Les visuels finaux sont livrés au format numérique (fichiers MP4 téléchargeables via lien sécurisé).</p>
 
-                    <p><strong>Article 6 — Référence commerciale :</strong><br>
-                    Sauf refus écrit du Client, Immerseo IA se réserve le droit de citer le Client et de diffuser de courts extraits des vidéos produites à titre de démonstration sur son portfolio et ses réseaux sociaux.</p>
+                    <p><strong>Article 5 — Modalités de Retouche</strong><br>
+                    • <em>Offres ponctuelles (Pack Short/Reel et Pack Premium) :</em> Une session d'ajustements légers (ajustement de texte ou de son) est incluse dans le tarif. Toute demande de modification majeure entraînant une re-génération complète sera facturée selon le tarif en vigueur.<br>
+                    • <em>Offre Partenaire Mensuel :</em> Les retouches raisonnables sont incluses dans la limite d'un usage équitable et selon le planning de production convenu.</p>
+
+                    <p><strong>Article 6 — Propriété Intellectuelle et Droit de Référence</strong><br>
+                    • <em>Cession des droits au Client :</em> À compter du paiement intégral de la prestation, le Prestataire cède au Client un droit d'exploitation non exclusif et mondial sur les vidéos finales produites pour ses besoins marketing et commerciaux.<br>
+                    • <em>Droit de Référence Commerciale (Portfolio) :</em> Sauf refus explicite et motivé formulé par écrit lors de la commande, le Client autorise le Prestataire à citer son nom/enseigne et à diffuser un extrait des vidéos produites à titre de référence commerciale sur ses canaux (site web, YouTube, réseaux sociaux).</p>
+
+                    <p><strong>Article 7 — Droit de Rétractation (Clientèle Professionnelle & Contenu Numérique)</strong><br>
+                    Conformément aux dispositions du Code de la consommation :<br>
+                    • Les prestations réalisées par Immerseo IA étant destinées en majorité à des professionnels (B2B), le droit de rétractation entre professionnels n'est pas applicable.<br>
+                    • De plus, s'agissant de la fourniture de contenus numériques personnalisés sur-mesure non fournis sur un support matériel, exécutés à la demande du Client dans un délai court, l'exécution commence immédiatement après l'accord du Client et réception des fichiers, ce qui équivaut à un renoncement explicite et express au droit de rétractation.</p>
+
+                    <p><strong>Article 8 — Limite de Responsabilité</strong><br>
+                    Le Prestataire s'engage à apporter tout le soin nécessaire à la réalisation des vidéos. Néanmoins, sa responsabilité ne pourra être engagée :<br>
+                    • En cas d'insatisfaction esthétique relevant d'une appréciation subjective du Client, dès lors que les visuels respectent le niveau de qualité présenté dans les démonstrations d'Immerseo IA.<br>
+                    • En cas d'interruption temporaire ou de dysfonctionnement lié aux services tiers (hébergeurs, processeurs de paiement Stripe, ou plateformes d'IA en amont).<br>
+                    • En cas de force majeure telle que définie par la jurisprudence française.<br>
+                    En tout état de cause, la responsabilité financière du Prestataire sera strictement limitée au montant H.T. payé par le Client pour la prestation concernée.</p>
+
+                    <p><strong>Article 9 — Droit Applicable et Juridiction Compétente</strong><br>
+                    Les présentes CGV sont soumises au droit français. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut de résolution amiable, les tribunaux compétents du siège de l'entreprise seront seuls habilités à statuer.</p>
                 `
             },
             privacy: {
