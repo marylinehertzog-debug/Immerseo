@@ -3,14 +3,14 @@
 <head>
     <meta name="google-site-verification" content="LptgmThIQBcQwLkguvB5n2tXl2M6ViMD-Ibjhn_Xwog" />
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'AW-18357331757');
-</script>
+      gtag('config', 'AW-18357331757');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Immerseo IA — Vues Immersives IA & Animations Vidéo pour Professionnels</title>
@@ -128,6 +128,38 @@
             </a>
         </div>
     </header>
+
+    <!-- SECTION CONFIRMATION PAIEMENT (#MERCI) -->
+    <div id="merci-section" class="hidden fixed inset-0 z-[100] bg-slate-950 overflow-y-auto p-4 sm:p-8">
+        <div class="max-w-4xl mx-auto pt-10 pb-20 space-y-6">
+            <div class="text-center space-y-3">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-400 text-3xl mb-2">
+                    ✓
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-black text-white">Merci pour votre commande !</h1>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto">
+                    Votre paiement a bien été validé. Il ne vous reste plus qu'à nous transmettre vos photos et consignes ci-dessous pour lancer la création de votre vidéo immersive.
+                </p>
+                <a href="#accueil" onclick="hideMerciPage()" class="inline-block text-xs text-cyan-400 hover:underline pt-2">
+                    ← Retourner sur le site principal
+                </a>
+            </div>
+
+            <!-- Formulaire Tally intégré post-achat -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800">
+                <iframe 
+                  data-tally-src="https://tally.so/embed/obYR5e?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                  loading="lazy" 
+                  width="100%" 
+                  height="600" 
+                  frameborder="0" 
+                  marginheight="0" 
+                  marginwidth="0" 
+                  title="Formulaire de dépôt de photos Immerseo IA">
+                </iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- SECTION PRINCIPALE / ACCUEIL -->
     <section id="accueil" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
@@ -495,9 +527,6 @@
                           marginwidth="0" 
                           title="Contact & Commande Immerseo IA">
                         </iframe>
-                        <script>
-                          var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-                        </script>
                     </div>
                 </div>
             </div>
@@ -550,8 +579,38 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE GESTION DU MENU ET DES DÉMOS YOUTUBE ET DE LA MODALE -->
+    <!-- SCRIPT EMBED TALLY GLOBAL -->
     <script>
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+    </script>
+
+    <!-- SCRIPT DE GESTION DU SITE, DES DÉMOS YOUTUBE ET DE LA REDIRECTION MERCI -->
+    <script>
+        /* GESTION DE LA PAGE DE CONFIRMATION / MERCI POST-STRIPE */
+        function checkMerciRoute() {
+            if (window.location.hash === '#merci') {
+                document.getElementById('merci-section').classList.remove('hidden');
+                
+                // Envoi automatique de l'événement de conversion vers Google Ads
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-18357331757/dXnjCKz3wNoCEK3OurFE'
+                    });
+                }
+            } else {
+                document.getElementById('merci-section').classList.add('hidden');
+            }
+        }
+
+        function hideMerciPage() {
+            window.location.hash = '';
+            document.getElementById('merci-section').classList.add('hidden');
+        }
+
+        window.addEventListener('load', checkMerciRoute);
+        window.addEventListener('hashchange', checkMerciRoute);
+
+        /* MENU MOBILE */
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
