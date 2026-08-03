@@ -2,15 +2,26 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta name="google-site-verification" content="LptgmThIQBcQwLkguvB5n2tXl2M6ViMD-Ibjhn_Xwog" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
+    
+    <!-- Google Tag (Google Ads) - Chargé dynamiquement selon le consentement cookies -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Consentement par défaut refusé jusqu'au choix du visiteur
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
+    <script>
       gtag('js', new Date());
-
       gtag('config', 'AW-18357331757');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Immerseo IA — Vues Immersives IA & Animations Vidéo pour Professionnels</title>
@@ -158,6 +169,10 @@
                   title="Brief Créatif – Vidéo Immersive IA">
                 </iframe>
             </div>
+            
+            <p class="text-[11px] text-slate-400 text-center">
+                🔒 Vos informations et fichiers transmis sont hébergés de façon sécurisée et strictement réservés à la confection de votre commande. Conformément à notre <button onclick="openLegalModal('privacy')" class="text-cyan-400 underline">Politique de Confidentialité</button>.
+            </p>
         </div>
     </div>
 
@@ -551,6 +566,10 @@
                           marginwidth="0" 
                           title="Contact & Commande Immerseo IA">
                         </iframe>
+                        <!-- Mention d'information RGPD (Art. 13) sous le formulaire -->
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 leading-relaxed">
+                            🔒 <strong>Protection de vos données :</strong> Les données personnelles recueillies dans ce formulaire sont traitées par Immerseo IA pour répondre à votre demande. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en nous écrivant. Consultez notre <button onclick="openLegalModal('privacy')" class="text-cyan-400 underline hover:text-cyan-300">Politique de Confidentialité</button>.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -581,8 +600,22 @@
         </div>
     </footer>
 
+    <!-- BANDEAU CNIL CONSENTEMENT COOKIES -->
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-[200] glass-card bg-slate-900 border border-slate-700 p-5 rounded-2xl shadow-2xl space-y-3">
+        <div class="flex items-start gap-3">
+            <span class="text-xl">🍪</span>
+            <div class="text-xs text-slate-300 leading-relaxed">
+                <strong>Gestion des cookies :</strong> Nous utilisons des cookies pour mesurer notre audience et optimiser l'efficacité de nos campagnes Google Ads. Vous pouvez accepter ou refuser ces cookies marketing.
+            </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 pt-2">
+            <button onclick="acceptCookies(false)" class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700">Refuser</button>
+            <button onclick="acceptCookies(true)" class="text-xs text-slate-950 font-bold bg-cyan-400 hover:bg-cyan-300 px-4 py-1.5 rounded-lg">Accepter</button>
+        </div>
+    </div>
+
     <!-- FENÊTRE MODALE POUR AFFICHER LES TEXTES JURIDIQUES -->
-    <div id="legal-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div id="legal-modal" class="fixed inset-0 z-[150] hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
         <div class="glass-card bg-slate-900 border border-slate-700 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
             
             <!-- En-tête de la fenêtre modale -->
@@ -605,11 +638,43 @@
 
     <!-- SCRIPT TALLY EMBED GLOBAL -->
     <script>
-      var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not zá visible]").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+      var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
     </script>
 
-    <!-- SCRIPT DE GESTION DU SITE, DES CHECKBOX CGV, DES DÉMOS YOUTUBE ET DE LA REDIRECTION MERCI -->
+    <!-- SCRIPT DE GESTION DU SITE, DES COOKIES CNIL, CGV & REDIRECTIONS -->
     <script>
+        /* GESTION DU BANDEAU COOKIES CNIL */
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookie_consent');
+            if (consent === 'true') {
+                enableGoogleAdsCookies();
+                document.getElementById('cookie-banner').classList.add('hidden');
+            } else if (consent === 'false') {
+                document.getElementById('cookie-banner').classList.add('hidden');
+            }
+        }
+
+        function acceptCookies(allow) {
+            localStorage.setItem('cookie_consent', allow ? 'true' : 'false');
+            document.getElementById('cookie-banner').classList.add('hidden');
+            if (allow) {
+                enableGoogleAdsCookies();
+            }
+        }
+
+        function enableGoogleAdsCookies() {
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'analytics_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+            }
+        }
+
+        window.addEventListener('load', checkCookieConsent);
+
         /* GESTION DES BOUTONS PAIEMENT PAR CHECKBOX CGV */
         function toggleStripeBtn(packId) {
             const checkbox = document.getElementById(`cgv-${packId}`);
@@ -712,7 +777,7 @@
             }
         }
 
-        /* GESTION DE LA FENÊTRE MODALE JURIDIQUE (CGV COMPLÈTES EXONÉRÉES ET COMPLÈTES) */
+        /* GESTION DE LA FENÊTRE MODALE JURIDIQUE COMPLÈTE & PÉNALITÉS L441-10 */
         const legalTexts = {
             mentions: {
                 title: "Mentions Légales",
@@ -743,10 +808,11 @@
                     <p><strong>Article 1 — Objet et Champ d'Application</strong><br>
                     Les présentes Conditions Générales de Vente (« CGV ») régissent l'ensemble des prestations de services conclues par l'entreprise individuelle Maryline Hertzog / Immerseo IA (« le Prestataire ») auprès de ses clients professionnels et particuliers (« le Client »). Immerseo IA propose des services de création, d'animation visuelle et de retouche vidéo assistées par intelligence artificielle à partir de photographies haute définition fournies par le Client. Toute commande passée auprès d'Immerseo IA implique l'acceptation sans réserve par le Client des présentes CGV.</p>
 
-                    <p><strong>Article 2 — Commandes et Modalités de Paiement</strong><br>
+                    <p><strong>Article 2 — Commandes, Tarifs et Pénalités de Retard</strong><br>
                     • <em>Prise de commande :</em> Les commandes s'effectuent en ligne via le site internet du Prestataire, les formulaires de commande dédiés (ex. Tally) ou par validation de devis.<br>
-                    • <em>Tarifs :</em> Les prix sont indiqués en Euros HT (Hors Taxes). Conformément à l'article 293 B du Code Général des Impôts (franchise en base de TVA pour les micro-entreprises), la TVA est non applicable (« TVA non applicable, art. 293 B du CGI »).<br>
-                    • <em>Paiement :</em> Le règlement s'effectue au moment de la commande par carte bancaire via la plateforme sécurisée Stripe, ou selon les modalités convenues sur la facture/devis (virement bancaire).<br>
+                    • <em>Tarifs :</em> Les prix sont indiqués en Euros HT (Hors Taxes). Conformément à l'article 293 B du Code Général des Impôts, la TVA est non applicable (« TVA non applicable, art. 293 B du CGI »).<br>
+                    • <em>Paiement :</em> Le règlement s'effectue à la commande par carte bancaire via la plateforme sécurisée Stripe, ou selon les modalités convenues sur facture/devis (virement bancaire).<br>
+                    • <em>Pénalités de retard (Art. L. 441-10 du Code de commerce) :</em> Tout retard de paiement sur facture entraîne de plein droit et sans mise en demeure préalable l'application d'une pénalité de retard égale au taux d'intérêt appliqué par la Banque Centrale Européenne à son opération de refinancement la plus récente majoré de 10 points de pourcentage, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 Euros (HT).<br>
                     • <em>Exécution :</em> La réalisation de la prestation démarre à réception du paiement intégral et du dépôt complet des photographies requises.</p>
 
                     <p><strong>Article 3 — Obligations du Client et Propriété des Fichiers Source</strong><br>
@@ -777,7 +843,7 @@
                     • En cas d'insatisfaction esthétique relevant d'une appréciation subjective du Client, dès lors que les visuels respectent le niveau de qualité présenté dans les démonstrations d'Immerseo IA.<br>
                     • En cas d'interruption temporaire ou de dysfonctionnement lié aux services tiers (hébergeurs, processeurs de paiement Stripe, ou plateformes d'IA en amont).<br>
                     • En cas de force majeure telle que définie par la jurisprudence française.<br>
-                    En tout état de cause, la responsabilité financière du Prestataire sera strictement limitée au montant H.T. payé par le Client pour la prestation concernée.</p>
+                    En tout état de cause, la responsabilité financière du Prestataire sera strictly limitée au montant H.T. payé par le Client pour la prestation concernée.</p>
 
                     <p><strong>Article 9 — Droit Applicable et Juridiction Compétente</strong><br>
                     Les présentes CGV sont soumises au droit français. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut de résolution amiable, les tribunaux compétents du siège de l'entreprise seront seuls habilités à statuer.</p>
@@ -786,14 +852,17 @@
             privacy: {
                 title: "Politique de Confidentialité & RGPD",
                 body: `
-                    <p><strong>Collecte des données :</strong><br>
-                    Les informations recueillies via le formulaire de contact (nom, adresse e-mail, photos) sont destinées exclusivement au traitement de vos commandes et au suivi de la relation commerciale par Immerseo IA.</p>
+                    <p><strong>1. Collecte des données personnelles (Art. 13 RGPD) :</strong><br>
+                    Les données à caractère personnel collectées sur ce site (nom, e-mail, téléphone, photos/fichiers transmis) font l'objet d'un traitement automatisé par Maryline Hertzog / Immerseo IA afin d'assurer la gestion de vos demandes de contact, l'établissement de devis et la réalisation de vos commandes de vidéos immersives.</p>
 
-                    <p><strong>Conservation & Droits :</strong><br>
-                    Vos données personnelles sont conservées de manière sécurisée et ne sont jamais cédées ni vendues à des tiers. Vous disposez d'un droit d'accès, de rectification et de suppression de vos données en écrivant à <a href="mailto:immerseo.ia@gmail.com" class="text-cyan-400">immerseo.ia@gmail.com</a>.</p>
+                    <p><strong>2. Base légale et durée de conservation :</strong><br>
+                    Le traitement repose sur l'exécution de mesures précontractuelles ou contractuelles (commandes) et sur votre consentement préalable (formulaire de contact/cookies). Vos données sont conservées pour une durée maximale de 3 ans à compter du dernier contact ou de la fin de la relation commerciale.</p>
 
-                    <p><strong>Cookies & Services tiers :</strong><br>
-                    Ce site utilise des modules intégrés tiers (Tally pour le formulaire, YouTube pour la vidéo et Stripe pour le paiement) qui peuvent déposer des cookies fonctionnels nécessaires au service.</p>
+                    <p><strong>3. Destinataires & Sécurité :</strong><br>
+                    Vos données sont strictement confidentielles et réservées à l'usage interne d'Immerseo IA. Elles sont hébergées sur des serveurs sécurisés via nos prestataires techniques (Vercel, Tally, Stripe). Aucune donnée n'est cédée ni vendue à des tiers.</p>
+
+                    <p><strong>4. Exercice de vos droits RGPD :</strong><br>
+                    Conformément au RGPD et à la loi Informatique et Libertés, vous bénéficiez d'un droit d'accès, de rectification, d'effacement, de limitation et de portabilité de vos données. Pour exercer ces droits, vous pouvez contacter : <a href="mailto:immerseo.ia@gmail.com" class="text-cyan-400">immerseo.ia@gmail.com</a>. Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL (cnil.fr).</p>
                 `
             }
         };
