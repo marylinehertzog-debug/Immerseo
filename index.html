@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+    <!-- FAVICON / ICÔNE GOOGLE SEARCH -->
+    <link rel="icon" type="image/png" sizes="32x32" href="Logo Immerseo IA.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'><path d='M70 12 H10 V68 H55' stroke='%2300E5FF' stroke-width='8' fill='none'/><polygon points='53,35 53,75 88,55' fill='%2300E5FF'/></svg>">
+    <link rel="apple-touch-icon" sizes="180x180" href="Logo Immerseo IA.png">
+
     <!-- MODE CONSENTEMENT V2 GOOGLE (Doit précéder le chargement du script gtag.js) -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -613,7 +618,7 @@
         </div>
     </footer>
 
-    <!-- BANDEAU CNIL CONSENTEMENT COOKIES (masqué par défaut avec 'hidden' pour éviter tout clignotement) -->
+    <!-- BANDEAU CNIL CONSENTEMENT COOKIES -->
     <div id="cookie-banner" class="hidden fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-[200] glass-card bg-slate-900 border border-slate-700 p-5 rounded-2xl shadow-2xl space-y-3">
         <div class="flex items-start gap-3">
             <span class="text-xl">🍪</span>
@@ -665,7 +670,6 @@
             } else if (consent === 'false') {
                 document.getElementById('cookie-banner').classList.add('hidden');
             } else {
-                // Aucun choix enregistré : afficher le bandeau de manière fluide
                 document.getElementById('cookie-banner').classList.remove('hidden');
             }
         }
@@ -694,7 +698,6 @@
             }
         }
 
-        // Vérification au chargement du DOM
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', checkCookieConsent);
         } else {
@@ -721,7 +724,6 @@
             if (window.location.hash === '#merci') {
                 document.getElementById('merci-section').classList.remove('hidden');
                 
-                // Envoi automatique de l'événement de conversion vers Google Ads (Clé de conversion Achat)
                 if (typeof gtag === 'function') {
                     gtag('event', 'conversion', {
                         'send_to': 'AW-18357331757/Y7-NCMmzsNgcEK3OurFE',
@@ -755,7 +757,7 @@
             });
         }
 
-        /* DÉMOS YOUTUBE PAR SECTEUR */
+        /* DÉMOS YOUTUBE PAR SECTEUR (Nouvelle vidéo démo resto mise à jour : 9gynGqGYqIM) */
         const demoData = {
             immo: { 
                 youtubeId: "RUPCpr2erRM", 
@@ -770,7 +772,7 @@
                 step: "Étape 1 : Ambiance lumineuse & mise en valeur"
             },
             resto: { 
-                youtubeId: "RUPCpr2erRM", 
+                youtubeId: "9gynGqGYqIM", 
                 title: "Démo Restaurant & Lounge", 
                 desc: "Ambiance de salle vivante & mise en valeur des tables",
                 step: "Étape 1 : Animation de salle & projection client"
@@ -839,7 +841,7 @@
                     <p><strong>Article 2 — Commandes, Tarifs et Pénalités de Retard</strong><br>
                     • <em>Prise de commande :</em> Les commandes s'effectuent en ligne via le site internet du Prestataire (www.immerseo-ia.fr), les formulaires de commande dédiés (ex. Tally) ou par validation de devis.<br>
                     • <em>Tarifs :</em> Les prix sont indiqués en Euros HT (Hors Taxes). Conformément à l'article 293 B du Code Général des Impôts, la TVA est non applicable (« TVA non applicable, art. 293 B du CGI »).<br>
-                    • <em>Paiement :</em> Le règlement s'effectue à la commande par carte bancaire via la plateforme sécurisée Stripe, ou selon les modalities convenues sur facture/devis (virement bancaire).<br>
+                    • <em>Paiement :</em> Le règlement s'effectue à la commande par carte bancaire via la plateforme sécurisée Stripe, ou selon les modalités convenues sur facture/devis (virement bancaire).<br>
                     • <em>Pénalités de retard (Art. L. 441-10 du Code de commerce) :</em> Tout retard de paiement sur facture entraîne de plein droit et sans mise en demeure préalable l'application d'une pénalité de retard égale au taux d'intérêt appliqué par la Banque Centrale Européenne à son opération de refinancement la plus récente majoré de 10 points de pourcentage, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 Euros (HT).<br>
                     • <em>Exécution :</em> La réalisation de la prestation démarre à réception du paiement intégral et du dépôt complet des photographies requises.</p>
 
