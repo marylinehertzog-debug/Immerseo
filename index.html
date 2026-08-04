@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <!-- Google tag (gtag.js) - Google Ads: 18357331757 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
+    <!-- MODE CONSENTEMENT V2 GOOGLE (Doit précéder le chargement du script gtag.js) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      // Consentement RGPD/CNIL par défaut
+      // Définition du consentement par défaut (CNIL / UE)
       gtag('consent', 'default', {
         'ad_storage': 'denied',
-        'analytics_storage': 'denied',
         'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
       });
+    </script>
 
+    <!-- Google tag (gtag.js) - Google Ads: 18357331757 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18357331757"></script>
+    <script>
+      gtag('js', new Date());
       gtag('config', 'AW-18357331757');
     </script>
 
@@ -652,7 +655,7 @@
 
     <!-- SCRIPT DE GESTION DU SITE, DES COOKIES CNIL, CGV & REDIRECTIONS -->
     <script>
-        /* GESTION DU BANDEAU COOKIES CNIL */
+        /* GESTION DU BANDEAU COOKIES CNIL ET MISE À JOUR CONSENTEMENT */
         function checkCookieConsent() {
             const consent = localStorage.getItem('cookie_consent');
             if (consent === 'true') {
