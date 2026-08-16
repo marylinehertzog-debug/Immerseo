@@ -675,12 +675,29 @@
         }
 
         function acceptCookies(allow) {
-            localStorage.setItem('cookie_consent', allow ? 'true' : 'false');
-            document.getElementById('cookie-banner').classList.add('hidden');
-            if (allow) {
-                enableGoogleAdsCookies();
-            }
+    localStorage.setItem('cookie_consent', allow ? 'true' : 'false');
+    document.getElementById('cookie-banner').classList.add('hidden');
+    
+    if (typeof gtag === 'function') {
+        if (allow) {
+            // Transmet immédiatement le consentement accordé à Google Ads (Consent Mode v2)
+            gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'analytics_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        } else {
+            // Transmet le refus explicite
+            gtag('consent', 'update', {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+            });
         }
+    }
+}
 
         function resetCookieConsent() {
             localStorage.removeItem('cookie_consent');
